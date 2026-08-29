@@ -289,8 +289,9 @@ function Index() {
               <Sparkles className="h-3.5 w-3.5" /> Nairobi · CBD &amp; Westlands
             </span>
             <h1 className="mt-6 text-4xl font-bold leading-[1.05] sm:text-5xl md:text-6xl">
-              Get noticed. <span className="text-gradient">Get results.</span>
+              Web Design &amp; Branding <span className="text-gradient">in Nairobi</span>
             </h1>
+
             <p className="mt-6 max-w-2xl text-lg text-muted-foreground">
               We build two things exceptionally well: <strong className="text-foreground">web design
               &amp; development</strong> and <strong className="text-foreground">graphic design &amp;
