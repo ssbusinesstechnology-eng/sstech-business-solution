@@ -29,17 +29,82 @@ const TITLE = "S&S Tech Solutions Hub — Web Design & Branding in Nairobi";
 const DESCRIPTION =
   "Nairobi-based web design, development and graphic design agency. Websites from KES 15,000, logos, posters and campaign branding that get you noticed.";
 
+const SITE_URL = "https://brandscape-builder-66.lovable.app";
+
+const LOCAL_BUSINESS_JSONLD = {
+  "@context": "https://schema.org",
+  "@type": "ProfessionalService",
+  "@id": `${SITE_URL}/#business`,
+  name: "S&S Tech Solutions Hub",
+  description: DESCRIPTION,
+  url: SITE_URL,
+  email: "sstechsolutionsa@gmail.com",
+  telephone: "+254713268806",
+  priceRange: "KES 800 - KES 140,000",
+  areaServed: [
+    { "@type": "City", name: "Nairobi" },
+    { "@type": "Country", name: "Kenya" },
+  ],
+  address: {
+    "@type": "PostalAddress",
+    streetAddress: "Nairobi CBD & Westlands",
+    addressLocality: "Nairobi",
+    addressRegion: "Nairobi County",
+    addressCountry: "KE",
+  },
+  sameAs: [`https://wa.me/254713268806`],
+  hasOfferCatalog: {
+    "@type": "OfferCatalog",
+    name: "Website packages",
+    itemListElement: [
+      { name: "Starter website", price: 15000, description: "Up to 3 pages, responsive, contact form" },
+      { name: "Basic website", price: 25000, description: "Up to 5 pages, basic SEO, analytics" },
+      { name: "Premium website", price: 65000, description: "Up to 10 semi-custom pages, CMS, advanced SEO" },
+      { name: "Pro website", price: 140000, description: "Up to 20 custom pages, e-commerce, brand kit" },
+    ].map((tier) => ({
+      "@type": "Offer",
+      priceCurrency: "KES",
+      price: tier.price,
+      availability: "https://schema.org/InStock",
+      itemOffered: {
+        "@type": "Service",
+        name: tier.name,
+        description: tier.description,
+        serviceType: "Web design and development",
+        areaServed: "Nairobi, Kenya",
+        provider: { "@id": `${SITE_URL}/#business` },
+      },
+    })),
+  },
+};
+
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
       { title: TITLE },
       { name: "description", content: DESCRIPTION },
+      { name: "keywords", content: "web design Nairobi, website development Kenya, graphic design Nairobi, logo design Kenya, poster design Nairobi, campaign branding" },
       { property: "og:title", content: TITLE },
       { property: "og:description", content: DESCRIPTION },
+      { property: "og:url", content: `${SITE_URL}/` },
+      { property: "og:site_name", content: "S&S Tech Solutions Hub" },
+      { property: "og:locale", content: "en_KE" },
+      { name: "twitter:title", content: TITLE },
+      { name: "twitter:description", content: DESCRIPTION },
+      { name: "geo.region", content: "KE-30" },
+      { name: "geo.placename", content: "Nairobi" },
+    ],
+    links: [{ rel: "canonical", href: `${SITE_URL}/` }],
+    scripts: [
+      {
+        type: "application/ld+json",
+        children: JSON.stringify(LOCAL_BUSINESS_JSONLD),
+      },
     ],
   }),
   component: Index,
 });
+
 
 const WHATSAPP_PRIMARY = "254713268806";
 const WHATSAPP_SECONDARY = "254115323604";
@@ -289,8 +354,9 @@ function Index() {
               <Sparkles className="h-3.5 w-3.5" /> Nairobi · CBD &amp; Westlands
             </span>
             <h1 className="mt-6 text-4xl font-bold leading-[1.05] sm:text-5xl md:text-6xl">
-              Get noticed. <span className="text-gradient">Get results.</span>
+              Web Design &amp; Branding <span className="text-gradient">in Nairobi</span>
             </h1>
+
             <p className="mt-6 max-w-2xl text-lg text-muted-foreground">
               We build two things exceptionally well: <strong className="text-foreground">web design
               &amp; development</strong> and <strong className="text-foreground">graphic design &amp;
