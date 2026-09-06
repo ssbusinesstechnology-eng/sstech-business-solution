@@ -508,6 +508,15 @@ function Index() {
             ))}
           </div>
         </Reveal>
+        <Reveal>
+          <p className="mx-auto mt-6 max-w-3xl text-center text-sm text-muted-foreground">
+            Designing for a church?{" "}
+            <Link to="/church-poster-design" className="font-medium text-primary hover:underline">
+              See our church poster design service in Nairobi
+            </Link>{" "}
+            — Sunday services, crusades, conferences and harvests from KES 800.
+          </p>
+        </Reveal>
       </Section>
 
       {/* Portfolio */}
