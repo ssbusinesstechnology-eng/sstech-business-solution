@@ -4,7 +4,7 @@
 - [x] Homepage H1, metadata, LocalBusiness JSON-LD
 - [x] sitemap.xml server route + robots.txt
 - [ ] Google Search Console: verify site, add property, submit sitemap
-- [ ] Church poster landing page (opportunity — pending user go-ahead)
+- [x] Church poster landing page (/church-poster-design)
 
 ## Routes
 - [ ] Split one-pager into section components
