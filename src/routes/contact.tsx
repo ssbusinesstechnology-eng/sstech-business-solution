@@ -49,20 +49,45 @@ export const Route = createFileRoute("/contact")({
 function ContactPage() {
   const [form, setForm] = useState({
     name: "",
+    businessName: "",
     email: "",
+    phone: "",
     service: SERVICE_OPTIONS[0] ?? "",
     message: "",
   });
+  const [sending, setSending] = useState(false);
+  const saveLead = useServerFn(submitContactLead);
 
-  function submit(e: React.FormEvent) {
+  async function submit(e: React.FormEvent) {
     e.preventDefault();
-    if (!form.name.trim() || !form.message.trim()) {
+    if (form.name.trim().length < 2 || form.message.trim().length < 5) {
       toast.error("Please add your name and a short message.");
       return;
     }
-    window.open(waLink(enquiryMessage(form)), "_blank", "noopener");
-    toast.success("Opening WhatsApp with your enquiry…");
+    setSending(true);
+    const wa = window.open("", "_blank", "noopener");
+    try {
+      await saveLead({
+        data: {
+          name: form.name,
+          businessName: form.businessName,
+          email: form.email,
+          phone: form.phone,
+          service: form.service,
+          message: form.message,
+        },
+      });
+      toast.success("Enquiry received — opening WhatsApp…");
+    } catch (error) {
+      toast.error(error instanceof Error ? error.message : "Something went wrong. Please try again.");
+    } finally {
+      setSending(false);
+      const url = waLink(enquiryMessage(form));
+      if (wa) wa.location.href = url;
+      else window.open(url, "_blank", "noopener");
+    }
   }
+
 
   return (
     <SiteLayout>
