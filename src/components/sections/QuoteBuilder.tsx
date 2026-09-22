@@ -207,22 +207,46 @@ export function QuoteBuilder({ currency }: { currency: Currency }) {
                 Indicative only — we confirm the final price after a free discovery call.
               </p>
             </div>
-            <Button asChild className="mt-6 w-full rounded-full">
-              <a
-                href={waLink(
-                  quoteMessage({
-                    tier,
-                    currency,
-                    addons: summary.lines,
-                    total: summary.totalLabel,
-                  }),
-                )}
-                target="_blank"
-                rel="noreferrer"
-              >
-                <MessageCircle className="mr-2 h-4 w-4" /> Send this quote on WhatsApp
-              </a>
+            <div className="mt-6 space-y-3 border-t border-border pt-5">
+              <p className="text-xs font-semibold uppercase tracking-widest text-muted-foreground">
+                Your details
+              </p>
+              <Input
+                placeholder="Your name"
+                value={details.name}
+                onChange={(e) => setDetails({ ...details, name: e.target.value })}
+              />
+              <Input
+                placeholder="Business name (optional)"
+                value={details.businessName}
+                onChange={(e) => setDetails({ ...details, businessName: e.target.value })}
+              />
+              <Input
+                placeholder="Phone / WhatsApp (optional)"
+                value={details.phone}
+                onChange={(e) => setDetails({ ...details, phone: e.target.value })}
+              />
+              <Input
+                type="email"
+                placeholder="Email (optional)"
+                value={details.email}
+                onChange={(e) => setDetails({ ...details, email: e.target.value })}
+              />
+              <Textarea
+                rows={3}
+                placeholder="Anything else we should know? (optional)"
+                value={details.requirements}
+                onChange={(e) => setDetails({ ...details, requirements: e.target.value })}
+              />
+            </div>
+            <Button disabled={sending} onClick={send} className="mt-5 w-full rounded-full">
+              <MessageCircle className="mr-2 h-4 w-4" />
+              {sending ? "Sending…" : "Get a Quote on WhatsApp"}
             </Button>
+            <p className="mt-3 text-center text-xs text-muted-foreground">
+              We save your request so we can follow up, then open WhatsApp with the summary.
+            </p>
+
           </aside>
         </div>
       </div>
