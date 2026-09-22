@@ -173,8 +173,9 @@ function ContactPage() {
                   placeholder="Tell us about your goals, timeline and budget."
                 />
               </div>
-              <Button type="submit" className="w-full rounded-full">
-                <MessageCircle className="mr-2 h-4 w-4" /> Send on WhatsApp
+              <Button type="submit" disabled={sending} className="w-full rounded-full">
+                <MessageCircle className="mr-2 h-4 w-4" />
+                {sending ? "Sending…" : "Talk to S&S on WhatsApp"}
               </Button>
             </form>
           </Reveal>
