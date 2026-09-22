@@ -19,6 +19,13 @@
 ## Admin
 - [x] Sign-in, upload with caption/category/tags, publish/hide, delete
 - [x] Public portfolio grid reads from database
+- [x] Enquiries panel: quote requests + contact leads with status updates
+
+## Backend hardening
+- [x] Roles extended (admin/manager/staff/content_manager), role checks in private schema
+- [x] quote_requests + contact_leads tables with RLS (staff read/update)
+- [x] Server-side quote totals (never trusted from the browser)
+- [x] Upload validation: image types only, 10MB cap on the storage bucket
 
 ## Pending
 - [ ] Publish so the new pages and metadata reach the live address
