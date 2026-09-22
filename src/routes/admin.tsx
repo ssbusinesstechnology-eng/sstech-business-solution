@@ -21,7 +21,7 @@ import {
 export const Route = createFileRoute("/admin")({
   head: () => ({
     meta: [
-      { title: "Portfolio manager — S&S Tech Solutions Hub" },
+      { title: "Portfolio manager — S&S Business Solutions" },
       { name: "description", content: "Private area for uploading and organising portfolio work." },
       { name: "robots", content: "noindex, nofollow" },
     ],

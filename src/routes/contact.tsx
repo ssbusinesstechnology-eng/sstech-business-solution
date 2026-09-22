@@ -21,9 +21,9 @@ import {
 } from "@/lib/whatsapp";
 
 const PATH = "/contact";
-const TITLE = "Contact S&S Tech Solutions Hub — Web & Design Quotes in Nairobi";
+const TITLE = "Contact S&S Business Solutions — Request a Quote in Kenya";
 const DESCRIPTION =
-  "Get a quote for web design, development, logos or posters in Nairobi. Send the form straight to WhatsApp, call us, or book a free 20-minute discovery call.";
+  "Tell us what you need — a website, branding, professional email, POS or business software, digital marketing or corporate solutions. Send the form to WhatsApp or book a free discovery call.";
 
 export const Route = createFileRoute("/contact")({
   head: () => {
