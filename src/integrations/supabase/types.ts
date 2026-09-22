@@ -14,6 +14,45 @@ export type Database = {
   }
   public: {
     Tables: {
+      contact_leads: {
+        Row: {
+          business_name: string | null
+          created_at: string
+          email: string | null
+          id: string
+          message: string | null
+          name: string
+          phone: string | null
+          service: string | null
+          status: Database["public"]["Enums"]["lead_status"]
+          updated_at: string
+        }
+        Insert: {
+          business_name?: string | null
+          created_at?: string
+          email?: string | null
+          id?: string
+          message?: string | null
+          name: string
+          phone?: string | null
+          service?: string | null
+          status?: Database["public"]["Enums"]["lead_status"]
+          updated_at?: string
+        }
+        Update: {
+          business_name?: string | null
+          created_at?: string
+          email?: string | null
+          id?: string
+          message?: string | null
+          name?: string
+          phone?: string | null
+          service?: string | null
+          status?: Database["public"]["Enums"]["lead_status"]
+          updated_at?: string
+        }
+        Relationships: []
+      }
       portfolio_items: {
         Row: {
           caption: string | null
@@ -53,6 +92,60 @@ export type Database = {
         }
         Relationships: []
       }
+      quote_requests: {
+        Row: {
+          addons: Json
+          business_name: string | null
+          created_at: string
+          currency: string
+          email: string | null
+          estimated_total: number
+          id: string
+          name: string
+          package_name: string
+          package_price: number
+          phone: string | null
+          recurring_total: number
+          requirements: string | null
+          status: Database["public"]["Enums"]["lead_status"]
+          updated_at: string
+        }
+        Insert: {
+          addons?: Json
+          business_name?: string | null
+          created_at?: string
+          currency?: string
+          email?: string | null
+          estimated_total?: number
+          id?: string
+          name: string
+          package_name: string
+          package_price?: number
+          phone?: string | null
+          recurring_total?: number
+          requirements?: string | null
+          status?: Database["public"]["Enums"]["lead_status"]
+          updated_at?: string
+        }
+        Update: {
+          addons?: Json
+          business_name?: string | null
+          created_at?: string
+          currency?: string
+          email?: string | null
+          estimated_total?: number
+          id?: string
+          name?: string
+          package_name?: string
+          package_price?: number
+          phone?: string | null
+          recurring_total?: number
+          requirements?: string | null
+          status?: Database["public"]["Enums"]["lead_status"]
+          updated_at?: string
+        }
+        Relationships: []
+      }
       user_roles: {
         Row: {
           created_at: string
@@ -87,9 +180,17 @@ export type Database = {
         }
         Returns: boolean
       }
+      is_staff: { Args: { _user_id: string }; Returns: boolean }
     }
     Enums: {
       app_role: "admin" | "user" | "manager" | "staff" | "content_manager"
+      lead_status:
+        | "new"
+        | "contacted"
+        | "in_discussion"
+        | "approved"
+        | "declined"
+        | "completed"
     }
     CompositeTypes: {
       [_ in never]: never
@@ -218,6 +319,14 @@ export const Constants = {
   public: {
     Enums: {
       app_role: ["admin", "user", "manager", "staff", "content_manager"],
+      lead_status: [
+        "new",
+        "contacted",
+        "in_discussion",
+        "approved",
+        "declined",
+        "completed",
+      ],
     },
   },
 } as const
