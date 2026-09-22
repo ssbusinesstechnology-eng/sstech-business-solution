@@ -59,6 +59,15 @@ function AdminPage() {
           <SignIn />
         )}
       </Section>
+      {ready && session ? (
+        <Section
+          eyebrow="Enquiries"
+          title="Quote requests & contact leads"
+          description="Everything visitors send through the quote builder and contact form."
+        >
+          <Leads />
+        </Section>
+      ) : null}
     </SiteLayout>
   );
 }
