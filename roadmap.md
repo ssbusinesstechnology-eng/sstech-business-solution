@@ -21,6 +21,16 @@
 - [x] Public portfolio grid reads from database
 - [x] Enquiries panel: quote requests + contact leads with status updates
 
+## Business operations dashboard
+- [x] Tabs: Dashboard, Enquiries, Quotes, Customers, Projects, Services, Portfolio, Activity
+- [x] Summary cards from real data only (zero/empty states when empty)
+- [x] Lead + quote status, staff assignment, internal notes, save-as-customer (no duplicates)
+- [x] Customer records linked to enquiries, quotes and projects
+- [x] Projects with status, dates and assigned staff
+- [x] Service catalogue with ordering and activate/deactivate
+- [x] Activity log of status changes, assignments and portfolio actions
+- [x] Verified end-to-end in the browser on desktop and mobile; test data removed
+
 ## Backend hardening
 - [x] Roles extended (admin/manager/staff/content_manager), role checks in private schema
 - [x] quote_requests + contact_leads tables with RLS (staff read/update)
