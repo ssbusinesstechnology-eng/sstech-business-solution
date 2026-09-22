@@ -1,4 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
+import { useServerFn } from "@tanstack/react-start";
 import { Mail, MapPin, MessageCircle, Phone } from "lucide-react";
 import { useState } from "react";
 import { toast } from "sonner";
@@ -11,6 +12,7 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 import { SERVICE_OPTIONS } from "@/lib/content";
+import { submitContactLead } from "@/lib/leads.functions";
 import { EMAIL, breadcrumbJsonLd, seo } from "@/lib/site";
 import {
   WHATSAPP_PRIMARY,
