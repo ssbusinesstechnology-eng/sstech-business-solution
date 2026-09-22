@@ -1,55 +1,200 @@
 import {
-  Brush,
-  Cake,
-  Code2,
+  Boxes,
+  Briefcase,
+  Building2,
+  Globe2,
+  Handshake,
+  LineChart,
+  Mail,
   Megaphone,
-  PartyPopper,
-  Vote,
+  Palette,
+  Rocket,
+  Server,
+  ShieldCheck,
+  ShoppingCart,
+  Sparkles,
+  Store,
+  Users,
+  Wrench,
   type LucideIcon,
 } from "lucide-react";
 
 export const NAV = [
-  { label: "Services", hash: "#services", to: "/services" },
-  { label: "Pricing", hash: "#pricing", to: "/pricing" },
-  { label: "Portfolio", hash: "#portfolio", to: "/portfolio" },
-  { label: "Process", hash: "#process", to: "/process" },
-  { label: "About", hash: "#about", to: "/about" },
-  { label: "Contact", hash: "#contact", to: "/contact" },
+  { label: "Solutions", to: "/solutions" as const },
+  { label: "Services", to: "/services" as const },
+  { label: "Portfolio", to: "/portfolio" as const },
+  { label: "About", to: "/about" as const },
+  { label: "Contact", to: "/contact" as const },
 ];
 
-export type Service = { icon: LucideIcon; title: string; body: string };
+export type Service = {
+  icon: LucideIcon;
+  title: string;
+  body: string;
+  items: string[];
+  benefits: string[];
+};
 
+/** Six major solution categories — the backbone of the services page and homepage. */
 export const SERVICES: Service[] = [
   {
-    icon: Brush,
-    title: "Graphic Design & Branding",
-    body: "Logos, full brand identity systems and marketing collateral that make you unmistakable.",
+    icon: Globe2,
+    title: "Digital Presence & Web Solutions",
+    body: "Complete digital presence — from the website itself to the domain, hosting, business email and ongoing technical support behind it.",
+    items: [
+      "Business website design & development",
+      "Corporate website development",
+      "Professional portfolio websites",
+      "Landing pages",
+      "E-commerce / online store solutions",
+      "Website redesign & modernisation",
+      "Website maintenance & support",
+      "Domain registration & management",
+      "Web hosting",
+      "Professional business email",
+      "Website security & technical support",
+    ],
+    benefits: [
+      "One partner for the site, domain, email and hosting",
+      "Built responsive and handed over complete",
+      "Support after launch, not just at delivery",
+    ],
   },
   {
-    icon: PartyPopper,
-    title: "Event & Party Posters",
-    body: "Invites, flyers and social graphics built to stop the scroll and fill the room.",
+    icon: Palette,
+    title: "Branding & Online Brand Presence",
+    body: "A consistent, professional identity across every platform your clients meet you on — online and in print.",
+    items: [
+      "Business branding",
+      "Logo design",
+      "Brand identity development",
+      "Corporate branding",
+      "Social media branding",
+      "Online brand setup",
+      "Digital brand presence",
+      "Marketing materials",
+      "Business profiles & digital assets",
+      "Professional business documentation",
+    ],
+    benefits: [
+      "One identity applied consistently everywhere",
+      "Print and digital assets delivered in editable formats",
+      "Profiles and documents that look considered",
+    ],
   },
   {
-    icon: Vote,
-    title: "Political & Campaign Materials",
-    body: "Candidate branding, rally posters and civic awareness creatives with real presence.",
+    icon: Boxes,
+    title: "Business Technology Solutions",
+    body: "Practical systems that digitise how a business runs — sales, stock, records and workflows — including our own S&S POS.",
+    items: [
+      "S&S POS — point of sale & business management",
+      "Inventory management systems",
+      "Business management systems",
+      "Custom business software",
+      "Digital record management",
+      "Business workflow digitisation",
+      "Custom web applications",
+      "Business dashboards",
+      "Technology consulting",
+    ],
+    benefits: [
+      "Systems scoped around how you actually work",
+      "Start with one module and grow into more",
+      "Training and handover included",
+    ],
   },
   {
-    icon: Cake,
-    title: "Festive & Personal Greetings",
-    body: "Christmas, Eid, birthdays and milestones — personal designs people actually share.",
+    icon: Briefcase,
+    title: "Professional & Financial Services Solutions",
+    body: "Technology, branding and digital tools for financial advisors, insurance professionals, accountants and consultants. We provide the digital solutions — not financial, insurance, accounting or legal advice.",
+    items: [
+      "Professional websites",
+      "Online branding & digital profiles",
+      "Lead and contact systems",
+      "Professional business email",
+      "Client-facing digital platforms",
+      "Custom business tools",
+      "Digital marketing support",
+    ],
+    benefits: [
+      "A credible online presence clients can verify",
+      "Enquiries captured and routed to you",
+      "Client-facing tools that fit regulated industries",
+    ],
+  },
+  {
+    icon: Building2,
+    title: "Corporate & Organisational Solutions",
+    body: "Digital transformation, systems and branding for corporates, SMEs, cooperatives, NGOs and community-based organisations.",
+    items: [
+      "Corporate websites",
+      "Organisational branding",
+      "Digital transformation",
+      "Custom software & business systems",
+      "Professional email infrastructure",
+      "Online presence development",
+      "Technology consulting",
+      "Digital communication solutions",
+    ],
+    benefits: [
+      "Solutions that suit committees and boards",
+      "Documented handover for internal teams",
+      "Room to phase work across budgets",
+    ],
   },
   {
     icon: Megaphone,
-    title: "Business & Recruitment Ads",
-    body: "Promotions, product ads and hiring posts formatted for every channel you use.",
+    title: "Digital Marketing & Online Growth",
+    body: "Structured digital marketing built around visibility and enquiries — strategy first, posting second.",
+    items: [
+      "Digital marketing strategy",
+      "Social media presence & branding",
+      "Search engine optimisation (SEO)",
+      "Online business visibility",
+      "Content & digital campaign support",
+      "Lead-generation focused digital solutions",
+    ],
+    benefits: [
+      "Clear goals before any content goes out",
+      "Search visibility built into the website",
+      "Reporting you can act on",
+    ],
   },
-  {
-    icon: Code2,
-    title: "Web Design & Development",
-    body: "Fast, responsive websites and digital platforms — from landing pages to e-commerce.",
-  },
+];
+
+export const POS = {
+  name: "S&S POS",
+  intro:
+    "A modern business management and point-of-sale solution that helps businesses manage sales, products, inventory, customers and day-to-day operations more efficiently.",
+  features: [
+    { icon: ShoppingCart, title: "Sales & checkout", body: "Record sales quickly and keep an accurate daily picture of what moved." },
+    { icon: Store, title: "Products & inventory", body: "Track stock levels, products and pricing in one place." },
+    { icon: Users, title: "Customers", body: "Keep customer records and purchase history attached to each sale." },
+    { icon: LineChart, title: "Business reporting", body: "See sales and stock activity summarised for decision-making." },
+    { icon: Wrench, title: "Fits your operation", body: "Configured around how your business already runs." },
+    { icon: Rocket, title: "Grows with you", body: "Start with point of sale and add modules as the business expands." },
+  ],
+};
+
+export type Audience = { icon: LucideIcon; title: string; body: string };
+
+export const AUDIENCES: Audience[] = [
+  { icon: Rocket, title: "For entrepreneurs", body: "Build a professional brand and digital presence from the ground up." },
+  { icon: Store, title: "For SMEs", body: "Digitise operations and manage customers, products and sales more efficiently." },
+  { icon: LineChart, title: "For financial advisors", body: "Build a credible professional presence and a clear digital client experience." },
+  { icon: ShieldCheck, title: "For insurance professionals", body: "Branding, websites and digital tools designed around client engagement." },
+  { icon: Building2, title: "For corporates", body: "Scalable digital, branding and technology solutions." },
+  { icon: Handshake, title: "For cooperatives & organisations", body: "Digital presence, business systems and technology that support growth." },
+  { icon: Briefcase, title: "For professional service providers", body: "Build credibility online and make it easier for clients to find and contact you." },
+];
+
+export const WHY_US = [
+  { icon: Briefcase, title: "Business-focused", body: "We scope around business outcomes — enquiries, efficiency, credibility — not just deliverables." },
+  { icon: Boxes, title: "Multiple solutions, one partner", body: "Website, branding, email, systems and marketing handled by the same team." },
+  { icon: Sparkles, title: "Modern technology", body: "Current tools and frameworks, chosen for maintainability rather than novelty." },
+  { icon: Wrench, title: "Practical implementation", body: "We build what can be run day to day by your team, and we train them on it." },
+  { icon: Server, title: "Scalable by design", body: "Start with what's needed now and extend as the business grows." },
+  { icon: Mail, title: "Ongoing support", body: "Maintenance, updates and technical help after launch." },
 ];
 
 export type Tier = {
@@ -177,6 +322,13 @@ export const ADDONS: Addon[] = [
     usd: 90,
   },
   {
+    id: "business-email",
+    label: "Professional business email",
+    note: "Branded mailboxes set up on your domain",
+    kes: 6000,
+    usd: 45,
+  },
+  {
     id: "copywriting",
     label: "Copywriting & content",
     note: "Written page copy plus sourced imagery",
@@ -210,18 +362,22 @@ export const DESIGN_PRICING = [
 ];
 
 export const PORTFOLIO_CATEGORIES = [
+  "Websites",
+  "Branding & Logos",
+  "Business Systems & POS",
+  "Corporate Projects",
+  "Marketing & Design",
   "Event & Occasion Posters",
   "Political & Campaign Branding",
   "Festive & Personal Greetings",
-  "Business & Organisational Ads",
 ];
 
 export const PROCESS = [
-  { step: "01", title: "Discovery Call", body: "Free 20-minute call to understand your goals, audience and budget." },
+  { step: "01", title: "Discovery Call", body: "Free 20-minute call to understand your goals, operations and budget." },
   { step: "02", title: "Proposal & Agreement", body: "A clear scope, timeline and fixed price — no surprises." },
   { step: "03", title: "Deposit", body: "A deposit locks your slot in our production calendar." },
   { step: "04", title: "Design & Build", body: "We design, develop and share progress as it happens." },
-  { step: "05", title: "Review & Revisions", body: "You review, we refine until it's right for your brand." },
+  { step: "05", title: "Review & Revisions", body: "You review, we refine until it's right for your business." },
   { step: "06", title: "Launch & Handover", body: "We go live, train your team and hand over every file." },
 ];
 
@@ -229,13 +385,23 @@ export const FOUNDERS = [
   {
     name: "Sheila",
     role: "Chief Technology & Innovation Officer",
-    body: "Leads backend engineering, infrastructure and innovation — making sure every platform we ship is secure, fast and built to scale.",
+    body: "Leads engineering, infrastructure and product — making sure every platform and system we ship is secure, maintainable and built to scale.",
   },
   {
     name: "Sam",
     role: "Chief Marketing & Frontend Officer",
-    body: "Leads frontend craft, marketing and client relations — translating brand goals into interfaces and campaigns that convert.",
+    body: "Leads frontend craft, marketing and client relations — translating business goals into interfaces and campaigns that work.",
   },
 ];
 
-export const SERVICE_OPTIONS = SERVICES.map((s) => s.title);
+/** Enquiry categories used by the contact form and its WhatsApp message. */
+export const SERVICE_OPTIONS = [
+  "Website",
+  "Branding",
+  "Online business presence",
+  "POS / business software",
+  "Professional email",
+  "Digital marketing",
+  "Corporate / organisational solutions",
+  "Other",
+];
