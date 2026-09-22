@@ -86,7 +86,15 @@ export function ProjectsPanel() {
     await qc.invalidateQueries({ queryKey: ["admin"] });
   }
 
-  async function patch(id: string, values: Record<string, string | null>, message: string) {
+  async function patch(
+    id: string,
+    values: {
+      status?: ProjectStatus;
+      assigned_to?: string | null;
+      completed_date?: string | null;
+    },
+    message: string,
+  ) {
     const { error: updateError } = await supabase.from("projects").update(values).eq("id", id);
     if (updateError) {
       toast.error(updateError.message);
