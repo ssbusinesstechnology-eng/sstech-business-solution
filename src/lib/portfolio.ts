@@ -60,11 +60,21 @@ export const adminPortfolioQuery = queryOptions({
   },
 });
 
+const ALLOWED_TYPES = ["image/jpeg", "image/png", "image/webp", "image/avif", "image/gif"];
+const MAX_BYTES = 10 * 1024 * 1024;
+
 export async function uploadPortfolioImage(file: File) {
-  const ext = file.name.split(".").pop()?.toLowerCase() ?? "jpg";
+  if (!ALLOWED_TYPES.includes(file.type)) {
+    throw new Error("Please upload a JPG, PNG, WebP, AVIF or GIF image.");
+  }
+  if (file.size > MAX_BYTES) {
+    throw new Error("That image is larger than 10MB. Please upload a smaller file.");
+  }
+  const ext = file.name.split(".").pop()?.toLowerCase().replace(/[^a-z0-9]/g, "") || "jpg";
   const path = `items/${crypto.randomUUID()}.${ext}`;
   const { error } = await supabase.storage.from(BUCKET).upload(path, file, {
     cacheControl: "3600",
+    contentType: file.type,
     upsert: false,
   });
   if (error) throw error;
