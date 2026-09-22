@@ -1,4 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
+import { useServerFn } from "@tanstack/react-start";
 import { Mail, MapPin, MessageCircle, Phone } from "lucide-react";
 import { useState } from "react";
 import { toast } from "sonner";
@@ -11,6 +12,7 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 import { SERVICE_OPTIONS } from "@/lib/content";
+import { submitContactLead } from "@/lib/leads.functions";
 import { EMAIL, breadcrumbJsonLd, seo } from "@/lib/site";
 import {
   WHATSAPP_PRIMARY,
@@ -49,20 +51,45 @@ export const Route = createFileRoute("/contact")({
 function ContactPage() {
   const [form, setForm] = useState({
     name: "",
+    businessName: "",
     email: "",
+    phone: "",
     service: SERVICE_OPTIONS[0] ?? "",
     message: "",
   });
+  const [sending, setSending] = useState(false);
+  const saveLead = useServerFn(submitContactLead);
 
-  function submit(e: React.FormEvent) {
+  async function submit(e: React.FormEvent) {
     e.preventDefault();
-    if (!form.name.trim() || !form.message.trim()) {
+    if (form.name.trim().length < 2 || form.message.trim().length < 5) {
       toast.error("Please add your name and a short message.");
       return;
     }
-    window.open(waLink(enquiryMessage(form)), "_blank", "noopener");
-    toast.success("Opening WhatsApp with your enquiry…");
+    setSending(true);
+    const wa = window.open("", "_blank", "noopener");
+    try {
+      await saveLead({
+        data: {
+          name: form.name,
+          businessName: form.businessName,
+          email: form.email,
+          phone: form.phone,
+          service: form.service,
+          message: form.message,
+        },
+      });
+      toast.success("Enquiry received — opening WhatsApp…");
+    } catch (error) {
+      toast.error(error instanceof Error ? error.message : "Something went wrong. Please try again.");
+    } finally {
+      setSending(false);
+      const url = waLink(enquiryMessage(form));
+      if (wa) wa.location.href = url;
+      else window.open(url, "_blank", "noopener");
+    }
   }
+
 
   return (
     <SiteLayout>
@@ -101,6 +128,26 @@ function ContactPage() {
                   />
                 </div>
               </div>
+              <div className="grid gap-5 sm:grid-cols-2">
+                <div className="space-y-2">
+                  <Label htmlFor="business">Business name (optional)</Label>
+                  <Input
+                    id="business"
+                    value={form.businessName}
+                    onChange={(e) => setForm({ ...form, businessName: e.target.value })}
+                    placeholder="Acme Ltd"
+                  />
+                </div>
+                <div className="space-y-2">
+                  <Label htmlFor="phone">Phone / WhatsApp (optional)</Label>
+                  <Input
+                    id="phone"
+                    value={form.phone}
+                    onChange={(e) => setForm({ ...form, phone: e.target.value })}
+                    placeholder="+254 7XX XXX XXX"
+                  />
+                </div>
+              </div>
               <div className="space-y-2">
                 <Label htmlFor="service">What do you need?</Label>
                 <select
@@ -126,8 +173,9 @@ function ContactPage() {
                   placeholder="Tell us about your goals, timeline and budget."
                 />
               </div>
-              <Button type="submit" className="w-full rounded-full">
-                <MessageCircle className="mr-2 h-4 w-4" /> Send on WhatsApp
+              <Button type="submit" disabled={sending} className="w-full rounded-full">
+                <MessageCircle className="mr-2 h-4 w-4" />
+                {sending ? "Sending…" : "Talk to S&S on WhatsApp"}
               </Button>
             </form>
           </Reveal>
