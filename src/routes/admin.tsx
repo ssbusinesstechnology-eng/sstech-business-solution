@@ -21,7 +21,7 @@ import {
 export const Route = createFileRoute("/admin")({
   head: () => ({
     meta: [
-      { title: "Portfolio manager — S&S Tech Solutions Hub" },
+      { title: "Portfolio manager — S&S Business Solutions" },
       { name: "description", content: "Private area for uploading and organising portfolio work." },
       { name: "robots", content: "noindex, nofollow" },
     ],
@@ -79,7 +79,10 @@ function SignIn() {
           });
     const { error } = await fn;
     setBusy(false);
-    if (error) return toast.error(error.message);
+    if (error) {
+      toast.error(error.message);
+      return;
+    }
     if (mode === "up") toast.success("Account created — check your email if confirmation is required.");
     await supabase.rpc("claim_admin");
   }
@@ -130,7 +133,10 @@ function PortfolioManager() {
 
   async function save(e: React.FormEvent) {
     e.preventDefault();
-    if (!form.title.trim()) return toast.error("Add a title.");
+    if (!form.title.trim()) {
+      toast.error("Add a title.");
+      return;
+    }
     setBusy(true);
     try {
       const image_path = file ? await uploadPortfolioImage(file) : null;
@@ -159,7 +165,10 @@ function PortfolioManager() {
 
   async function remove(id: string, path: string | null) {
     const { error } = await supabase.from("portfolio_items").delete().eq("id", id);
-    if (error) return toast.error(error.message);
+    if (error) {
+      toast.error(error.message);
+      return;
+    }
     await deletePortfolioImage(path);
     toast.success("Removed.");
     qc.invalidateQueries({ queryKey: ["portfolio"] });
@@ -170,7 +179,10 @@ function PortfolioManager() {
       .from("portfolio_items")
       .update({ published: !published })
       .eq("id", id);
-    if (error) return toast.error(error.message);
+    if (error) {
+      toast.error(error.message);
+      return;
+    }
     qc.invalidateQueries({ queryKey: ["portfolio"] });
   }
 

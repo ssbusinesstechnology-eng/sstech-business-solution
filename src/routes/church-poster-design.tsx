@@ -3,12 +3,13 @@ import { Check, MessageCircle, ArrowLeft } from "lucide-react";
 
 import { Reveal } from "@/components/Reveal";
 import { Section, PageHeader } from "@/components/Section";
+import { SiteLayout } from "@/components/SiteLayout";
 import { Button } from "@/components/ui/button";
 import { SITE_NAME, SITE_URL, EMAIL, seo, breadcrumbJsonLd } from "@/lib/site";
 import { designItemMessage, generalMessage, waLink } from "@/lib/whatsapp";
 
 const PATH = "/church-poster-design";
-const TITLE = "Church Poster Design in Nairobi — from KES 800 | S&S Tech";
+const TITLE = "Church Poster Design in Nairobi — from KES 800 | S&S Business Solutions";
 const DESCRIPTION =
   "Church poster design in Nairobi from KES 800. Sunday service, crusade, revival, conference and harvest posters delivered same day on WhatsApp, print and social ready.";
 
@@ -90,7 +91,7 @@ export const Route = createFileRoute("/church-poster-design")({
 
 function ChurchPosterPage() {
   return (
-    <div className="min-h-screen bg-background font-body">
+    <SiteLayout>
       <PageHeader
         eyebrow="Church poster design · Nairobi"
         title={
@@ -212,6 +213,6 @@ function ChurchPosterPage() {
           </p>
         </Reveal>
       </Section>
-    </div>
+    </SiteLayout>
   );
 }

@@ -43,6 +43,16 @@ export function serviceMessage(service: { title: string; body: string }) {
   ]);
 }
 
+export function posMessage() {
+  return compose([
+    "I'd like to know more about *S&S POS*.",
+    "Here's my business type and what I need to manage:",
+    "•",
+    "",
+    "Please share pricing, setup time and what's included.",
+  ]);
+}
+
 export function tierMessage(
   tier: { name: string; kes: number; usd: number; delivery: string; features: string[] },
   currency: Currency,
