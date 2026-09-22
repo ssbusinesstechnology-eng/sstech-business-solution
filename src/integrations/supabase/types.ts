@@ -14,17 +14,101 @@ export type Database = {
   }
   public: {
     Tables: {
+      activity_log: {
+        Row: {
+          action: string
+          actor_id: string | null
+          created_at: string
+          detail: string | null
+          entity_id: string | null
+          entity_type: string
+          id: string
+        }
+        Insert: {
+          action: string
+          actor_id?: string | null
+          created_at?: string
+          detail?: string | null
+          entity_id?: string | null
+          entity_type: string
+          id?: string
+        }
+        Update: {
+          action?: string
+          actor_id?: string | null
+          created_at?: string
+          detail?: string | null
+          entity_id?: string | null
+          entity_type?: string
+          id?: string
+        }
+        Relationships: []
+      }
       contact_leads: {
+        Row: {
+          assigned_to: string | null
+          business_name: string | null
+          created_at: string
+          customer_id: string | null
+          email: string | null
+          id: string
+          internal_notes: string | null
+          message: string | null
+          name: string
+          phone: string | null
+          service: string | null
+          status: Database["public"]["Enums"]["crm_status"]
+          updated_at: string
+        }
+        Insert: {
+          assigned_to?: string | null
+          business_name?: string | null
+          created_at?: string
+          customer_id?: string | null
+          email?: string | null
+          id?: string
+          internal_notes?: string | null
+          message?: string | null
+          name: string
+          phone?: string | null
+          service?: string | null
+          status?: Database["public"]["Enums"]["crm_status"]
+          updated_at?: string
+        }
+        Update: {
+          assigned_to?: string | null
+          business_name?: string | null
+          created_at?: string
+          customer_id?: string | null
+          email?: string | null
+          id?: string
+          internal_notes?: string | null
+          message?: string | null
+          name?: string
+          phone?: string | null
+          service?: string | null
+          status?: Database["public"]["Enums"]["crm_status"]
+          updated_at?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "contact_leads_customer_id_fkey"
+            columns: ["customer_id"]
+            isOneToOne: false
+            referencedRelation: "customers"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      customers: {
         Row: {
           business_name: string | null
           created_at: string
           email: string | null
           id: string
-          message: string | null
           name: string
+          notes: string | null
           phone: string | null
-          service: string | null
-          status: Database["public"]["Enums"]["lead_status"]
           updated_at: string
         }
         Insert: {
@@ -32,11 +116,9 @@ export type Database = {
           created_at?: string
           email?: string | null
           id?: string
-          message?: string | null
           name: string
+          notes?: string | null
           phone?: string | null
-          service?: string | null
-          status?: Database["public"]["Enums"]["lead_status"]
           updated_at?: string
         }
         Update: {
@@ -44,11 +126,9 @@ export type Database = {
           created_at?: string
           email?: string | null
           id?: string
-          message?: string | null
           name?: string
+          notes?: string | null
           phone?: string | null
-          service?: string | null
-          status?: Database["public"]["Enums"]["lead_status"]
           updated_at?: string
         }
         Relationships: []
@@ -92,57 +172,190 @@ export type Database = {
         }
         Relationships: []
       }
+      projects: {
+        Row: {
+          assigned_to: string | null
+          completed_date: string | null
+          created_at: string
+          customer_id: string | null
+          description: string | null
+          due_date: string | null
+          id: string
+          name: string
+          notes: string | null
+          service_type: string | null
+          start_date: string | null
+          status: Database["public"]["Enums"]["project_status"]
+          updated_at: string
+        }
+        Insert: {
+          assigned_to?: string | null
+          completed_date?: string | null
+          created_at?: string
+          customer_id?: string | null
+          description?: string | null
+          due_date?: string | null
+          id?: string
+          name: string
+          notes?: string | null
+          service_type?: string | null
+          start_date?: string | null
+          status?: Database["public"]["Enums"]["project_status"]
+          updated_at?: string
+        }
+        Update: {
+          assigned_to?: string | null
+          completed_date?: string | null
+          created_at?: string
+          customer_id?: string | null
+          description?: string | null
+          due_date?: string | null
+          id?: string
+          name?: string
+          notes?: string | null
+          service_type?: string | null
+          start_date?: string | null
+          status?: Database["public"]["Enums"]["project_status"]
+          updated_at?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "projects_customer_id_fkey"
+            columns: ["customer_id"]
+            isOneToOne: false
+            referencedRelation: "customers"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
       quote_requests: {
         Row: {
           addons: Json
+          assigned_to: string | null
           business_name: string | null
           created_at: string
           currency: string
+          customer_id: string | null
           email: string | null
           estimated_total: number
           id: string
+          internal_notes: string | null
           name: string
           package_name: string
           package_price: number
           phone: string | null
           recurring_total: number
           requirements: string | null
-          status: Database["public"]["Enums"]["lead_status"]
+          status: Database["public"]["Enums"]["crm_status"]
           updated_at: string
         }
         Insert: {
           addons?: Json
+          assigned_to?: string | null
           business_name?: string | null
           created_at?: string
           currency?: string
+          customer_id?: string | null
           email?: string | null
           estimated_total?: number
           id?: string
+          internal_notes?: string | null
           name: string
           package_name: string
           package_price?: number
           phone?: string | null
           recurring_total?: number
           requirements?: string | null
-          status?: Database["public"]["Enums"]["lead_status"]
+          status?: Database["public"]["Enums"]["crm_status"]
           updated_at?: string
         }
         Update: {
           addons?: Json
+          assigned_to?: string | null
           business_name?: string | null
           created_at?: string
           currency?: string
+          customer_id?: string | null
           email?: string | null
           estimated_total?: number
           id?: string
+          internal_notes?: string | null
           name?: string
           package_name?: string
           package_price?: number
           phone?: string | null
           recurring_total?: number
           requirements?: string | null
-          status?: Database["public"]["Enums"]["lead_status"]
+          status?: Database["public"]["Enums"]["crm_status"]
           updated_at?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "quote_requests_customer_id_fkey"
+            columns: ["customer_id"]
+            isOneToOne: false
+            referencedRelation: "customers"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      services: {
+        Row: {
+          active: boolean
+          category: string
+          created_at: string
+          description: string | null
+          display_order: number
+          id: string
+          name: string
+          short_description: string | null
+          updated_at: string
+        }
+        Insert: {
+          active?: boolean
+          category: string
+          created_at?: string
+          description?: string | null
+          display_order?: number
+          id?: string
+          name: string
+          short_description?: string | null
+          updated_at?: string
+        }
+        Update: {
+          active?: boolean
+          category?: string
+          created_at?: string
+          description?: string | null
+          display_order?: number
+          id?: string
+          name?: string
+          short_description?: string | null
+          updated_at?: string
+        }
+        Relationships: []
+      }
+      staff_profiles: {
+        Row: {
+          created_at: string
+          display_name: string | null
+          email: string | null
+          updated_at: string
+          user_id: string
+        }
+        Insert: {
+          created_at?: string
+          display_name?: string | null
+          email?: string | null
+          updated_at?: string
+          user_id: string
+        }
+        Update: {
+          created_at?: string
+          display_name?: string | null
+          email?: string | null
+          updated_at?: string
+          user_id?: string
         }
         Relationships: []
       }
@@ -176,6 +389,14 @@ export type Database = {
     }
     Enums: {
       app_role: "admin" | "user" | "manager" | "staff" | "content_manager"
+      crm_status:
+        | "new"
+        | "contacted"
+        | "qualified"
+        | "proposal_sent"
+        | "in_discussion"
+        | "won"
+        | "lost"
       lead_status:
         | "new"
         | "contacted"
@@ -183,6 +404,13 @@ export type Database = {
         | "approved"
         | "declined"
         | "completed"
+      project_status:
+        | "planning"
+        | "in_progress"
+        | "review"
+        | "completed"
+        | "on_hold"
+        | "cancelled"
     }
     CompositeTypes: {
       [_ in never]: never
@@ -311,6 +539,15 @@ export const Constants = {
   public: {
     Enums: {
       app_role: ["admin", "user", "manager", "staff", "content_manager"],
+      crm_status: [
+        "new",
+        "contacted",
+        "qualified",
+        "proposal_sent",
+        "in_discussion",
+        "won",
+        "lost",
+      ],
       lead_status: [
         "new",
         "contacted",
@@ -318,6 +555,14 @@ export const Constants = {
         "approved",
         "declined",
         "completed",
+      ],
+      project_status: [
+        "planning",
+        "in_progress",
+        "review",
+        "completed",
+        "on_hold",
+        "cancelled",
       ],
     },
   },
