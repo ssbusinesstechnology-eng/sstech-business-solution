@@ -41,6 +41,13 @@ function staffOptions(staff: StaffProfile[]) {
   }));
 }
 
+type PatchValues = {
+  status?: CrmStatus;
+  assigned_to?: string | null;
+  internal_notes?: string | null;
+  customer_id?: string | null;
+};
+
 function useRowActions(table: Table) {
   const qc = useQueryClient();
 
