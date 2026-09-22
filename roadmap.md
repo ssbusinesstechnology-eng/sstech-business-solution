@@ -1,29 +1,24 @@
 # Roadmap
 
 ## SEO
-- [x] Homepage H1, metadata, LocalBusiness JSON-LD
-- [x] sitemap.xml server route + robots.txt
-- [ ] Google Search Console: verify site, add property, submit sitemap
+- [x] Per-route titles, descriptions, OG/Twitter, canonical
+- [x] sitemap.xml + robots.txt
+- [x] Google Search Console verified, sitemap submitted
 - [x] Church poster landing page (/church-poster-design)
 
 ## Routes
-- [ ] Split one-pager into section components
-- [ ] Real routes: /services /pricing /portfolio /process /about /contact
-- [ ] Per-route head(): title, description, OG, Twitter, canonical
-- [ ] Update sitemap.xml with new routes
+- [x] /, /solutions, /services, /portfolio, /about, /contact, /admin
+- [x] Shared header/footer on every page
 
 ## WhatsApp flows
-- [ ] Service cards -> serviceMessage
-- [ ] Tier buttons -> tierMessage
-- [ ] Poster/design rows -> designItemMessage
-- [ ] Portfolio items -> portfolioMessage
-- [ ] Contact form -> enquiryMessage
+- [x] Service cards, tier buttons, poster rows, portfolio items, contact form, quote builder
 
 ## Quote builder
-- [ ] Add-on selector on pricing (extra pages, e-commerce, maintenance, etc.)
-- [ ] Live estimated total + WhatsApp quote message
+- [x] Package + add-on selector with live estimated total and WhatsApp send
 
 ## Admin
-- [ ] /auth sign-in page (email + Google)
-- [ ] /admin portfolio upload with caption, category, tags
-- [ ] Public portfolio grid reads from database
+- [x] Sign-in, upload with caption/category/tags, publish/hide, delete
+- [x] Public portfolio grid reads from database
+
+## Pending
+- [ ] Publish so the new pages and metadata reach the live address
