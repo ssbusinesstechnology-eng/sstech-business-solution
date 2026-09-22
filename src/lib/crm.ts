@@ -136,9 +136,11 @@ export const activityQuery = queryOptions({
   },
 });
 
-export type ContactLead = Awaited<ReturnType<typeof contactLeadsQuery.queryFn>>[number];
-export type QuoteRequest = Awaited<ReturnType<typeof quoteRequestsQuery.queryFn>>[number];
-export type Customer = Awaited<ReturnType<typeof customersQuery.queryFn>>[number];
-export type Project = Awaited<ReturnType<typeof projectsQuery.queryFn>>[number];
-export type ServiceRow = Awaited<ReturnType<typeof servicesQuery.queryFn>>[number];
-export type StaffProfile = Awaited<ReturnType<typeof staffQuery.queryFn>>[number];
+export type ContactLead = Tables<"contact_leads">;
+export type QuoteRequest = Tables<"quote_requests">;
+export type Customer = Tables<"customers">;
+export type Project = Tables<"projects"> & {
+  customers: { name: string; business_name: string | null } | null;
+};
+export type ServiceRow = Tables<"services">;
+export type StaffProfile = Pick<Tables<"staff_profiles">, "user_id" | "display_name" | "email">;
