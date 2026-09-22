@@ -44,8 +44,12 @@ function staffOptions(staff: StaffProfile[]) {
 function useRowActions(table: Table) {
   const qc = useQueryClient();
 
-  async function patch(id: string, values: Record<string, unknown>, message: string) {
-    const { error } = await supabase.from(table).update(values).eq("id", id);
+  async function patch(id: string, values: PatchValues, message: string) {
+    const query =
+      table === "contact_leads"
+        ? supabase.from("contact_leads").update(values)
+        : supabase.from("quote_requests").update(values);
+    const { error } = await query.eq("id", id);
     if (error) {
       toast.error(error.message);
       return;
