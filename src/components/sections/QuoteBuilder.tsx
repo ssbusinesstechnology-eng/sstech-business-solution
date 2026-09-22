@@ -1,10 +1,15 @@
+import { useServerFn } from "@tanstack/react-start";
 import { Calculator, Minus, MessageCircle, Plus } from "lucide-react";
 import { useMemo, useState } from "react";
+import { toast } from "sonner";
 
 import { Reveal } from "@/components/Reveal";
 import { Button } from "@/components/ui/button";
 import { Checkbox } from "@/components/ui/checkbox";
+import { Input } from "@/components/ui/input";
+import { Textarea } from "@/components/ui/textarea";
 import { ADDONS, TIERS } from "@/lib/content";
+import { submitQuoteRequest } from "@/lib/leads.functions";
 import { money, quoteMessage, waLink, type Currency } from "@/lib/whatsapp";
 
 type Selection = Record<string, number>;
@@ -12,8 +17,18 @@ type Selection = Record<string, number>;
 export function QuoteBuilder({ currency }: { currency: Currency }) {
   const [tierName, setTierName] = useState(TIERS[2]!.name);
   const [selected, setSelected] = useState<Selection>({});
+  const [details, setDetails] = useState({
+    name: "",
+    businessName: "",
+    phone: "",
+    email: "",
+    requirements: "",
+  });
+  const [sending, setSending] = useState(false);
+  const saveQuote = useServerFn(submitQuoteRequest);
 
   const tier = TIERS.find((t) => t.name === tierName) ?? TIERS[0]!;
+
 
   const toggle = (id: string, on: boolean) =>
     setSelected((prev) => {
