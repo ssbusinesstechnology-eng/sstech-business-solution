@@ -217,7 +217,7 @@ function RowShell({
         <MiniSelect
           ariaLabel="Status"
           value={row.status}
-          onChange={(v) => patch(row.id, { status: v }, "Status updated.")}
+          onChange={(v) => patch(row.id, { status: v as CrmStatus }, "Status updated.")}
           options={CRM_STATUSES.map((s) => ({ value: s, label: label(s) }))}
         />
         <MiniSelect
