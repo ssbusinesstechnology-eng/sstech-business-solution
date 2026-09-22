@@ -79,6 +79,40 @@ export function QuoteBuilder({ currency }: { currency: Currency }) {
     };
   }, [selected, currency, tier]);
 
+  async function send() {
+    if (details.name.trim().length < 2) {
+      toast.error("Please add your name so we can follow up.");
+      return;
+    }
+    setSending(true);
+    const wa = window.open("", "_blank", "noopener");
+    try {
+      await saveQuote({
+        data: {
+          name: details.name,
+          businessName: details.businessName,
+          email: details.email,
+          phone: details.phone,
+          currency,
+          packageName: tier.name,
+          selections: Object.entries(selected).map(([id, qty]) => ({ id, qty })),
+          requirements: details.requirements,
+        },
+      });
+      toast.success("Quote saved — opening WhatsApp with your summary…");
+    } catch (error) {
+      toast.error(error instanceof Error ? error.message : "Something went wrong. Please try again.");
+    } finally {
+      setSending(false);
+      const url = waLink(
+        quoteMessage({ tier, currency, addons: summary.lines, total: summary.totalLabel }),
+      );
+      if (wa) wa.location.href = url;
+      else window.open(url, "_blank", "noopener");
+    }
+  }
+
+
   return (
     <Reveal className="mt-14">
       <div id="quote-builder" className="rounded-2xl surface-card p-6 md:p-8">
