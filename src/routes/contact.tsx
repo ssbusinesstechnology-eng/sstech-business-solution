@@ -128,6 +128,26 @@ function ContactPage() {
                   />
                 </div>
               </div>
+              <div className="grid gap-5 sm:grid-cols-2">
+                <div className="space-y-2">
+                  <Label htmlFor="business">Business name (optional)</Label>
+                  <Input
+                    id="business"
+                    value={form.businessName}
+                    onChange={(e) => setForm({ ...form, businessName: e.target.value })}
+                    placeholder="Acme Ltd"
+                  />
+                </div>
+                <div className="space-y-2">
+                  <Label htmlFor="phone">Phone / WhatsApp (optional)</Label>
+                  <Input
+                    id="phone"
+                    value={form.phone}
+                    onChange={(e) => setForm({ ...form, phone: e.target.value })}
+                    placeholder="+254 7XX XXX XXX"
+                  />
+                </div>
+              </div>
               <div className="space-y-2">
                 <Label htmlFor="service">What do you need?</Label>
                 <select
