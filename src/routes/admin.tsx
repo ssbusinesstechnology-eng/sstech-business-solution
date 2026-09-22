@@ -84,7 +84,11 @@ function SignIn() {
       return;
     }
     if (mode === "up") toast.success("Account created — check your email if confirmation is required.");
-    await supabase.rpc("claim_admin");
+    try {
+      await claimAdmin();
+    } catch {
+      // first-user promotion is best-effort; existing admins keep their role
+    }
   }
 
   return (
