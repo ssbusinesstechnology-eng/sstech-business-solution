@@ -72,7 +72,11 @@ export function PortfolioSection({
                   className="aspect-4/3 w-full object-cover"
                 />
               ) : (
-                <div className="aspect-4/3 w-full bg-secondary" />
+                <div className="gradient-brand grid aspect-4/3 w-full place-items-center px-6 text-center">
+                  <span className="font-display text-lg text-primary-foreground/90">
+                    {item.title}
+                  </span>
+                </div>
               )}
               <div className="flex flex-1 flex-col p-5">
                 <p className="text-[11px] uppercase tracking-widest text-accent">{item.category}</p>
