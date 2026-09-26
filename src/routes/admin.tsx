@@ -9,6 +9,7 @@ import { EnquiriesPanel, QuotesPanel } from "@/components/admin/LeadsPanels";
 import { PortfolioPanel } from "@/components/admin/PortfolioPanel";
 import { ProjectsPanel } from "@/components/admin/ProjectsPanel";
 import { ServicesPanel } from "@/components/admin/ServicesPanel";
+import { SeoInsightsPanel } from "@/components/admin/SeoInsightsPanel";
 import { SiteLayout } from "@/components/SiteLayout";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -36,6 +37,7 @@ const TABS = [
   { id: "projects", label: "Projects" },
   { id: "services", label: "Services" },
   { id: "portfolio", label: "Portfolio" },
+  { id: "seo", label: "SEO Insights" },
   { id: "activity", label: "Activity" },
 ] as const;
 
@@ -130,6 +132,7 @@ function AdminPage() {
         {tab === "projects" && <ProjectsPanel />}
         {tab === "services" && <ServicesPanel />}
         {tab === "portfolio" && <PortfolioPanel />}
+        {tab === "seo" && <SeoInsightsPanel />}
         {tab === "activity" && <ActivityPanel />}
       </div>
     </SiteLayout>
