@@ -13,3 +13,4 @@
 - Public portfolio combines admin-managed records with the four supplied design samples kept as managed project assets; matching titles are de-duplicated.
 - Public-facing pages use the Copper Glass system with Sora headings, Manrope body copy, faceted geometry and reduced-motion-safe CSS animation; admin workflows retain their functional structure.
 - Public AI recommendations are explicit one-click requests using the server-held AI Gateway key, low reasoning, bounded inputs and catalogue-only output; no background calls or automatic retries.
+- Recommendation PDFs are generated in the visitor's browser and optional follow-up details reuse the existing enquiry workflow, so neither action triggers another AI request.
