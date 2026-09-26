@@ -4,6 +4,7 @@ import { z } from "zod";
 
 import { SERVICES } from "@/lib/content";
 import { TIERS } from "@/lib/pricing";
+import type { ProjectRecommendation } from "@/lib/project-advisor";
 
 const AI_GATEWAY = "https://ai.gateway.lovable.dev/v1";
 const MODEL = "openai/gpt-6-astra";
@@ -17,8 +18,6 @@ const recommendationSchema = z.object({
   nextSteps: z.array(z.string().min(4).max(180)).min(2).max(4),
   considerations: z.array(z.string().min(4).max(180)).max(3),
 });
-
-export type ProjectRecommendation = z.infer<typeof recommendationSchema>;
 
 function createRunIdFetch() {
   let runId: string | undefined;

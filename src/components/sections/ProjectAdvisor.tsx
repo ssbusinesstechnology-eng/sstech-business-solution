@@ -14,7 +14,7 @@ import {
 } from "@/components/ui/select";
 import { Textarea } from "@/components/ui/textarea";
 import { getProjectRecommendation } from "@/lib/project-advisor.functions";
-import type { ProjectRecommendation } from "@/lib/project-advisor.server";
+import type { ProjectRecommendation } from "@/lib/project-advisor";
 import { projectRecommendationMessage, waLink } from "@/lib/whatsapp";
 
 const BUDGETS = [
