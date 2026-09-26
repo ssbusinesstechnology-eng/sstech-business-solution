@@ -10,7 +10,7 @@ export function WhyUsSection({ id = "why-us" }: { id?: string }) {
       title="What working with us looks like"
       description="We keep the scope clear, the build practical and the support going after launch."
     >
-      <div className="grid gap-px overflow-hidden rounded-2xl border border-border bg-border sm:grid-cols-2 lg:grid-cols-3">
+      <div className="grid gap-px overflow-hidden border border-border bg-border sm:grid-cols-2 lg:grid-cols-3">
         {WHY_US.map((item, i) => (
           <Reveal key={item.title} delay={i * 40} className="h-full">
             <div className="h-full bg-card p-7">

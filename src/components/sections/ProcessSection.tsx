@@ -13,7 +13,7 @@ export function ProcessSection({ id = "process" }: { id?: string }) {
       <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
         {PROCESS.map((p, i) => (
           <Reveal key={p.step} delay={i * 50}>
-            <div className="h-full rounded-2xl border border-border bg-card p-6">
+            <div className="glass-panel h-full p-6 transition-transform duration-300 hover:-translate-y-1">
               <span className="font-sans text-3xl font-bold text-accent">{p.step}</span>
               <h3 className="mt-3 font-sans text-base font-semibold">{p.title}</h3>
               <p className="mt-2 text-sm text-muted-foreground">{p.body}</p>

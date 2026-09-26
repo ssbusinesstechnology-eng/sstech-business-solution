@@ -15,7 +15,7 @@ import {
 
 export function SiteLayout({ children }: { children: ReactNode }) {
   return (
-    <div className="min-h-screen bg-background font-body">
+    <div className="min-h-screen overflow-hidden bg-background font-body">
       <SiteHeader />
       <main>{children}</main>
       <SiteFooter />
@@ -24,7 +24,7 @@ export function SiteLayout({ children }: { children: ReactNode }) {
         target="_blank"
         rel="noreferrer"
         aria-label="Chat with us on WhatsApp"
-        className="fixed bottom-5 right-5 z-50 grid h-14 w-14 place-items-center rounded-full bg-primary text-primary-foreground shadow-lg transition-transform hover:scale-105"
+        className="fixed bottom-5 right-5 z-50 grid h-14 w-14 place-items-center rounded-full bg-primary text-primary-foreground shadow-lg transition-transform duration-300 hover:-translate-y-1"
       >
         <MessageCircle className="h-6 w-6" />
       </a>
@@ -36,8 +36,8 @@ function SiteHeader() {
   const [open, setOpen] = useState(false);
 
   return (
-    <header className="sticky top-0 z-50 border-b border-border bg-background/90 backdrop-blur-lg">
-      <div className="mx-auto flex h-16 max-w-6xl items-center justify-between px-4">
+    <header className="sticky top-0 z-50 border-b border-border/70 bg-background/80 backdrop-blur-xl">
+      <div className="mx-auto flex h-20 max-w-7xl items-center justify-between px-5 md:px-8">
         <Link to="/" onClick={() => setOpen(false)}>
           <Logo size={36} />
         </Link>
@@ -56,7 +56,7 @@ function SiteHeader() {
         </nav>
 
         <div className="flex items-center gap-2">
-          <Button asChild size="sm" className="hidden rounded-full sm:inline-flex">
+          <Button asChild size="sm" className="hidden rounded-none px-5 sm:inline-flex">
             <Link to="/contact">
               Get started <ArrowRight className="ml-1 h-4 w-4" />
             </Link>
@@ -65,7 +65,7 @@ function SiteHeader() {
             type="button"
             aria-label={open ? "Close menu" : "Open menu"}
             onClick={() => setOpen((v) => !v)}
-            className="grid h-10 w-10 place-items-center rounded-full border border-border text-foreground lg:hidden"
+            className="grid h-10 w-10 place-items-center rounded-none border border-border text-foreground lg:hidden"
           >
             {open ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
           </button>
@@ -87,7 +87,7 @@ function SiteHeader() {
               </li>
             ))}
           </ul>
-          <Button asChild className="mt-3 w-full rounded-full">
+          <Button asChild className="mt-3 w-full rounded-none">
             <Link to="/contact" onClick={() => setOpen(false)}>
               Get started
             </Link>
@@ -101,14 +101,14 @@ function SiteHeader() {
 function SiteFooter() {
   return (
     <footer className="border-t border-border bg-ink text-background">
-      <div className="mx-auto grid max-w-6xl gap-10 px-4 py-14 sm:grid-cols-2 lg:grid-cols-4">
+      <div className="mx-auto grid max-w-7xl gap-10 px-5 py-16 sm:grid-cols-2 md:px-8 lg:grid-cols-4">
         <div>
           <Logo size={40} tone="inverted" />
           <p className="mt-4 max-w-xs text-sm text-background/70">
             Technology, digital, branding and business solutions for modern businesses and
             professionals.
           </p>
-          <Button asChild size="sm" className="mt-5 rounded-full">
+          <Button asChild size="sm" className="mt-5 rounded-none">
             <a href={waLink(generalMessage())} target="_blank" rel="noreferrer">
               <MessageCircle className="mr-2 h-4 w-4" /> WhatsApp us
             </a>

@@ -16,12 +16,14 @@ export function Section({
   children: ReactNode;
 }) {
   return (
-    <section id={id} className="border-t border-border/60 py-20">
-      <div className="mx-auto max-w-6xl px-4">
-        <Reveal className="mb-10 max-w-2xl">
-          <p className="text-xs font-semibold uppercase tracking-[0.2em] text-accent">{eyebrow}</p>
-          <h2 className="mt-3 text-3xl font-bold sm:text-4xl">{title}</h2>
-          {description && <p className="mt-4 text-muted-foreground">{description}</p>}
+    <section id={id} className="relative overflow-hidden border-t border-border/60 py-20 md:py-28">
+      <div className="mx-auto max-w-7xl px-5 md:px-8">
+        <Reveal className="mb-12 grid gap-5 md:grid-cols-[minmax(0,0.78fr)_minmax(18rem,0.42fr)] md:items-end md:gap-16">
+          <div>
+            <p className="text-xs font-semibold uppercase tracking-[0.2em] text-accent">{eyebrow}</p>
+            <h2 className="mt-4 max-w-3xl text-3xl font-bold leading-tight sm:text-4xl md:text-5xl">{title}</h2>
+          </div>
+          {description && <p className="text-sm leading-relaxed text-muted-foreground md:text-base">{description}</p>}
         </Reveal>
         {children}
       </div>

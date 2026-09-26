@@ -47,36 +47,36 @@
   --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
   --color-sidebar-border: var(--sidebar-border);
   --color-sidebar-ring: var(--sidebar-ring);
-  --font-sans: "Fraunces", ui-serif, Georgia, serif;
-  --font-body: "Inter Tight", ui-sans-serif, system-ui, sans-serif;
+  --font-sans: "Sora", ui-sans-serif, system-ui, sans-serif;
+  --font-body: "Manrope", ui-sans-serif, system-ui, sans-serif;
 }
 
 :root {
-  --radius: 0.75rem;
+  --radius: 0.35rem;
 
-  /* white canvas, rich brown brand, gold accent */
-  --background: oklch(0.995 0.004 80);
-  --foreground: oklch(0.24 0.035 55);
-  --ink: oklch(0.21 0.036 55);
-  --surface: oklch(0.985 0.008 80);
-  --surface-foreground: oklch(0.24 0.035 55);
-  --card: oklch(1 0 0);
-  --card-foreground: oklch(0.24 0.035 55);
-  --popover: oklch(1 0 0);
-  --popover-foreground: oklch(0.24 0.035 55);
-  --primary: oklch(0.39 0.068 52);
-  --primary-foreground: oklch(0.985 0.012 85);
-  --secondary: oklch(0.95 0.017 80);
-  --secondary-foreground: oklch(0.3 0.045 55);
-  --muted: oklch(0.955 0.012 80);
-  --muted-foreground: oklch(0.52 0.03 60);
-  --accent: oklch(0.78 0.128 78);
-  --accent-foreground: oklch(0.24 0.045 55);
+  /* Copper Glass: obsidian, walnut, copper and porcelain */
+  --background: oklch(0.974 0.008 75);
+  --foreground: oklch(0.18 0.035 43);
+  --ink: oklch(0.15 0.036 42);
+  --surface: oklch(0.952 0.014 70);
+  --surface-foreground: oklch(0.18 0.035 43);
+  --card: oklch(0.99 0.005 76 / 0.72);
+  --card-foreground: oklch(0.18 0.035 43);
+  --popover: oklch(0.99 0.005 76);
+  --popover-foreground: oklch(0.18 0.035 43);
+  --primary: oklch(0.38 0.094 48);
+  --primary-foreground: oklch(0.974 0.008 75);
+  --secondary: oklch(0.92 0.025 65);
+  --secondary-foreground: oklch(0.24 0.06 47);
+  --muted: oklch(0.935 0.013 70);
+  --muted-foreground: oklch(0.47 0.035 50);
+  --accent: oklch(0.72 0.122 68);
+  --accent-foreground: oklch(0.17 0.04 43);
   --destructive: oklch(0.58 0.2 27);
   --destructive-foreground: oklch(0.99 0.005 80);
-  --border: oklch(0.9 0.014 75);
-  --input: oklch(0.89 0.014 75);
-  --ring: oklch(0.55 0.09 60);
+  --border: oklch(0.84 0.025 65 / 0.72);
+  --input: oklch(0.84 0.025 65);
+  --ring: oklch(0.62 0.1 60);
   --chart-1: oklch(0.39 0.068 52);
   --chart-2: oklch(0.78 0.128 78);
   --chart-3: oklch(0.55 0.08 55);
@@ -91,14 +91,14 @@
   --sidebar-border: oklch(0.9 0.014 75);
   --sidebar-ring: oklch(0.55 0.09 60);
 
-  --gradient-brand: linear-gradient(120deg, var(--primary), var(--accent));
+  --gradient-brand: linear-gradient(120deg, var(--ink), var(--primary) 58%, var(--accent));
   --gradient-surface: linear-gradient(
     160deg,
     color-mix(in oklab, var(--accent) 6%, var(--surface)),
     var(--surface)
   );
-  --shadow-glow: 0 20px 48px -22px color-mix(in oklab, var(--primary) 40%, transparent);
-  --shadow-card: 0 14px 34px -26px oklch(0.24 0.035 55 / 0.5);
+  --shadow-glow: 0 28px 75px -28px color-mix(in oklab, var(--accent) 50%, transparent);
+  --shadow-card: 0 24px 60px -38px color-mix(in oklab, var(--ink) 55%, transparent);
 }
 
 @layer base {
@@ -154,10 +154,43 @@
   }
 }
 
+@keyframes facet-float {
+  0%, 100% { transform: translate3d(0, 0, 0) rotate(-3deg); }
+  50% { transform: translate3d(0, -16px, 0) rotate(2deg); }
+}
+
+@keyframes facet-drift {
+  0%, 100% { transform: translate3d(0, 0, 0) rotate(18deg); }
+  50% { transform: translate3d(8px, -12px, 0) rotate(24deg); }
+}
+
+@utility glass-panel {
+  background: color-mix(in oklab, var(--card) 76%, transparent);
+  border: 1px solid color-mix(in oklab, var(--border) 72%, transparent);
+  box-shadow: var(--shadow-card);
+  backdrop-filter: blur(18px);
+}
+
+@utility faceted-form {
+  filter: drop-shadow(0 34px 35px color-mix(in oklab, var(--ink) 24%, transparent));
+  animation: facet-float 8s ease-in-out infinite;
+}
+
+@utility facet-shard {
+  clip-path: polygon(50% 0%, 100% 30%, 82% 100%, 14% 88%, 0% 28%);
+  animation: facet-drift 10s ease-in-out infinite;
+}
+
 @utility reveal {
   opacity: 0;
 }
 
 .reveal.is-visible {
   animation: rise 0.7s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  .faceted-form, .facet-shard, .reveal.is-visible { animation: none; }
+  .reveal { opacity: 1; }
 }
