@@ -15,7 +15,6 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { supabase } from "@/integrations/supabase/client";
-import { claimAdmin } from "@/lib/admin.functions";
 import { cn } from "@/lib/utils";
 
 export const Route = createFileRoute("/admin")({
@@ -162,14 +161,6 @@ function SignIn() {
     }
     if (mode === "up") {
       toast.success("Account created — check your email if confirmation is required.");
-    }
-    // Only attempt first-user promotion once a session actually exists.
-    const { data: sessionData } = await supabase.auth.getSession();
-    if (!sessionData.session) return;
-    try {
-      await claimAdmin();
-    } catch {
-      // first-user promotion is best-effort; existing admins keep their role
     }
   }
 
