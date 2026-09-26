@@ -1,10 +1,11 @@
 import { useServerFn } from "@tanstack/react-start";
-import { ArrowRight, Check, Compass, MessageCircle } from "lucide-react";
+import { ArrowRight, Check, Compass, Download, MessageCircle, UserRound } from "lucide-react";
 import { useState } from "react";
 import { toast } from "sonner";
 
 import { Reveal } from "@/components/Reveal";
 import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
 import {
   Select,
   SelectContent,
@@ -15,6 +16,8 @@ import {
 import { Textarea } from "@/components/ui/textarea";
 import { getProjectRecommendation } from "@/lib/project-advisor.functions";
 import type { ProjectRecommendation } from "@/lib/project-advisor";
+import { downloadProjectBrief } from "@/lib/project-brief-pdf";
+import { submitContactLead } from "@/lib/leads.functions";
 import { projectRecommendationMessage, waLink } from "@/lib/whatsapp";
 
 const BUDGETS = [
@@ -36,11 +39,17 @@ const TIMELINES = [
 
 export function ProjectAdvisor() {
   const getRecommendation = useServerFn(getProjectRecommendation);
+  const saveLead = useServerFn(submitContactLead);
   const [goals, setGoals] = useState("");
   const [budget, setBudget] = useState("");
   const [timeline, setTimeline] = useState("");
   const [loading, setLoading] = useState(false);
   const [recommendation, setRecommendation] = useState<ProjectRecommendation | null>(null);
+  const [downloading, setDownloading] = useState(false);
+  const [showFollowUp, setShowFollowUp] = useState(false);
+  const [sending, setSending] = useState(false);
+  const [followUpSent, setFollowUpSent] = useState(false);
+  const [contact, setContact] = useState({ name: "", email: "", phone: "" });
 
   async function submit() {
     if (goals.trim().length < 20 || !budget || !timeline) {
@@ -52,10 +61,59 @@ export function ProjectAdvisor() {
     try {
       const next = await getRecommendation({ data: { goals, budget, timeline } });
       setRecommendation(next);
+      setShowFollowUp(false);
+      setFollowUpSent(false);
     } catch (error) {
       toast.error(error instanceof Error ? error.message : "The recommendation could not be completed.");
     } finally {
       setLoading(false);
+    }
+  }
+
+  async function downloadBrief() {
+    if (!recommendation) return;
+    setDownloading(true);
+    try {
+      await downloadProjectBrief({ goals, budget, timeline, recommendation });
+      toast.success("Your tailored brief has been downloaded.");
+    } catch {
+      toast.error("The PDF could not be prepared. Please try again.");
+    } finally {
+      setDownloading(false);
+    }
+  }
+
+  async function requestFollowUp(event: React.FormEvent) {
+    event.preventDefault();
+    if (!recommendation) return;
+    if (contact.name.trim().length < 2 || (!contact.email.trim() && !contact.phone.trim())) {
+      toast.error("Add your name and either an email or phone number.");
+      return;
+    }
+    setSending(true);
+    try {
+      await saveLead({
+        data: {
+          name: contact.name,
+          email: contact.email,
+          phone: contact.phone,
+          businessName: "",
+          service: recommendation.serviceArea,
+          message: [
+            "Project advisor follow-up request",
+            `Recommended package: ${recommendation.packageName}`,
+            `Goals: ${goals}`,
+            `Budget: ${budget}`,
+            `Timeline: ${timeline}`,
+          ].join("\n"),
+        },
+      });
+      setFollowUpSent(true);
+      toast.success("Thanks — S&S can now follow up with you.");
+    } catch (error) {
+      toast.error(error instanceof Error ? error.message : "Your details could not be sent. Please try again.");
+    } finally {
+      setSending(false);
     }
   }
 
@@ -150,11 +208,72 @@ export function ProjectAdvisor() {
                 {recommendation.considerations.length > 0 && (
                   <p className="mt-5 text-xs leading-relaxed text-background/50">{recommendation.considerations.join(" · ")}</p>
                 )}
-                <Button asChild size="lg" className="mt-7 w-full rounded-none">
-                  <a href={waLink(projectRecommendationMessage({ goals, budget, timeline, recommendation }))} target="_blank" rel="noreferrer">
-                    <MessageCircle className="h-4 w-4" /> Send brief on WhatsApp <ArrowRight className="ml-auto h-4 w-4" />
-                  </a>
-                </Button>
+                <div className="mt-7 grid gap-3 sm:grid-cols-2">
+                  <Button asChild size="lg" className="w-full rounded-none">
+                    <a href={waLink(projectRecommendationMessage({ goals, budget, timeline, recommendation }))} target="_blank" rel="noreferrer">
+                      <MessageCircle className="h-4 w-4" /> WhatsApp brief <ArrowRight className="ml-auto h-4 w-4" />
+                    </a>
+                  </Button>
+                  <Button type="button" variant="outline" size="lg" onClick={downloadBrief} disabled={downloading} className="w-full rounded-none border-background/25 bg-transparent text-background hover:bg-background/10 hover:text-background">
+                    <Download className="h-4 w-4" /> {downloading ? "Preparing PDF…" : "Download PDF"}
+                  </Button>
+                </div>
+
+                <div className="mt-6 border-t border-background/15 pt-6">
+                  {followUpSent ? (
+                    <div className="flex gap-3 bg-accent/10 p-4 text-sm text-background/80">
+                      <Check className="mt-0.5 h-4 w-4 shrink-0 text-accent" />
+                      <p>Your details were received. S&amp;S will use your preferred contact to follow up.</p>
+                    </div>
+                  ) : showFollowUp ? (
+                    <form onSubmit={requestFollowUp} className="space-y-4">
+                      <div>
+                        <p className="text-sm font-semibold text-background">Would you like S&amp;S to follow up?</p>
+                        <p className="mt-1 text-xs text-background/55">Optional. Add your name and one contact method.</p>
+                      </div>
+                      <Input
+                        aria-label="Your name"
+                        value={contact.name}
+                        onChange={(event) => setContact({ ...contact, name: event.target.value })}
+                        placeholder="Your name"
+                        maxLength={120}
+                        className="h-11 rounded-none border-background/20 bg-background/5 text-background placeholder:text-background/40 focus-visible:ring-accent"
+                      />
+                      <div className="grid gap-3 sm:grid-cols-2">
+                        <Input
+                          aria-label="Email address"
+                          type="email"
+                          value={contact.email}
+                          onChange={(event) => setContact({ ...contact, email: event.target.value })}
+                          placeholder="Email address"
+                          maxLength={160}
+                          className="h-11 rounded-none border-background/20 bg-background/5 text-background placeholder:text-background/40 focus-visible:ring-accent"
+                        />
+                        <Input
+                          aria-label="Phone number"
+                          type="tel"
+                          value={contact.phone}
+                          onChange={(event) => setContact({ ...contact, phone: event.target.value })}
+                          placeholder="Phone / WhatsApp"
+                          maxLength={40}
+                          className="h-11 rounded-none border-background/20 bg-background/5 text-background placeholder:text-background/40 focus-visible:ring-accent"
+                        />
+                      </div>
+                      <div className="flex flex-col gap-2 sm:flex-row">
+                        <Button type="submit" disabled={sending} className="rounded-none">
+                          <UserRound className="h-4 w-4" /> {sending ? "Sending…" : "Request a follow-up"}
+                        </Button>
+                        <Button type="button" variant="ghost" onClick={() => setShowFollowUp(false)} className="rounded-none text-background/65 hover:bg-background/10 hover:text-background">
+                          Not now
+                        </Button>
+                      </div>
+                    </form>
+                  ) : (
+                    <Button type="button" variant="ghost" onClick={() => setShowFollowUp(true)} className="w-full rounded-none text-background/75 hover:bg-background/10 hover:text-background">
+                      <UserRound className="h-4 w-4" /> Ask S&amp;S to follow up
+                    </Button>
+                  )}
+                </div>
               </div>
             ) : (
               <div className="flex min-h-[24rem] items-center justify-center text-center">
