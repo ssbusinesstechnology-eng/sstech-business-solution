@@ -58,7 +58,13 @@ export function SeoInsightsPanel() {
     }
   }
 
-  const totals = snapshot?.totals ?? {};
+  const totals = snapshot?.totals ?? {
+    clicks: 0,
+    impressions: 0,
+    ctr: 0,
+    previous_clicks: 0,
+    previous_impressions: 0,
+  };
   const queries = snapshot?.query_rows ?? [];
   const pages = snapshot?.page_rows ?? [];
 
@@ -93,16 +99,16 @@ export function SeoInsightsPanel() {
           <div className="grid gap-3 sm:grid-cols-3">
             <AdminCard>
               <p className="text-xs text-muted-foreground">Clicks</p>
-              <p className="mt-1 text-2xl font-semibold">{number(totals["clicks"])}</p>
+              <p className="mt-1 text-2xl font-semibold">{number(totals.clicks)}</p>
             </AdminCard>
             <AdminCard>
               <p className="text-xs text-muted-foreground">Impressions</p>
-              <p className="mt-1 text-2xl font-semibold">{number(totals["impressions"])}</p>
+              <p className="mt-1 text-2xl font-semibold">{number(totals.impressions)}</p>
             </AdminCard>
             <AdminCard>
               <p className="text-xs text-muted-foreground">Click-through rate</p>
               <p className="mt-1 text-2xl font-semibold">
-                {typeof totals["ctr"] === "number" ? `${(totals["ctr"] * 100).toFixed(1)}%` : "0%"}
+                {`${(totals.ctr * 100).toFixed(1)}%`}
               </p>
             </AdminCard>
           </div>
