@@ -1,6 +1,7 @@
 import { Canvas, useFrame } from "@react-three/fiber";
 import { Environment, Lightformer, Line } from "@react-three/drei";
 import { useEffect, useMemo, useRef, useState } from "react";
+import { Pause, Play } from "lucide-react";
 import * as THREE from "three";
 
 type Palette = {
@@ -131,6 +132,7 @@ export default function TechnologyGlobe() {
   const [palette, setPalette] = useState<Palette>();
   const [active, setActive] = useState(false);
   const [reducedMotion, setReducedMotion] = useState(false);
+  const [paused, setPaused] = useState(false);
 
   useEffect(() => {
     const element = container.current;
@@ -156,13 +158,27 @@ export default function TechnologyGlobe() {
     };
   }, []);
 
+  const still = reducedMotion || paused;
+
   return (
     <div ref={container} className="technology-globe relative h-[24rem] w-full sm:h-[30rem] lg:h-[36rem]">
+      {!reducedMotion && (
+        <button
+          type="button"
+          onClick={() => setPaused((p) => !p)}
+          aria-pressed={paused}
+          aria-label={paused ? "Resume globe animation" : "Pause globe animation"}
+          className="absolute left-5 top-5 z-10 inline-flex items-center gap-2 border border-background/25 bg-ink/70 px-3 py-2 text-xs font-semibold text-background backdrop-blur transition-colors hover:border-accent hover:text-accent"
+        >
+          {paused ? <Play className="h-3.5 w-3.5" /> : <Pause className="h-3.5 w-3.5" />}
+          {paused ? "Resume" : "Pause"}
+        </button>
+      )}
       {palette && (
         <Canvas
           aria-label="Interactive global technology network"
           dpr={[1, 1.35]}
-          frameloop={active && !reducedMotion ? "always" : "demand"}
+          frameloop={active && !still ? "always" : "demand"}
           camera={{ position: [0, 0, 4.25], fov: 42 }}
           gl={{ antialias: true, alpha: true, powerPreference: "high-performance" }}
         >
