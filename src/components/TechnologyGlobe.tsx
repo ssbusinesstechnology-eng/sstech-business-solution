@@ -39,7 +39,7 @@ function NetworkGlobe({ palette, reducedMotion }: { palette: Palette; reducedMot
   const globe = useRef<THREE.Group>(null);
   const target = useRef({ x: 0, y: 0 });
   const arcs = useMemo(
-    () => CONNECTIONS.map(([a, b]) => curveBetween(NETWORK_POINTS[a], NETWORK_POINTS[b])),
+    () => CONNECTIONS.map(([a, b]) => ({ key: `${a}-${b}`, points: curveBetween(NETWORK_POINTS[a], NETWORK_POINTS[b]) })),
     [],
   );
 
@@ -90,9 +90,9 @@ function NetworkGlobe({ palette, reducedMotion }: { palette: Palette; reducedMot
         <meshBasicMaterial color={palette.paper} transparent opacity={0.24} />
       </mesh>
 
-      {arcs.map((points, index) => (
+      {arcs.map(({ key, points }, index) => (
         <Line
-          key={`${CONNECTIONS[index][0]}-${CONNECTIONS[index][1]}`}
+          key={key}
           points={points}
           color={index % 3 === 0 ? palette.paper : palette.accent}
           transparent
