@@ -5,6 +5,7 @@ import creativeVibes from "@/assets/portfolio/creative-vibes-event.jpg.asset.jso
 import pizzaTime from "@/assets/portfolio/pizza-time-poster.jpg.asset.json";
 import recruitmentCampaign from "@/assets/portfolio/recruitment-campaign.jpg.asset.json";
 import { supabase } from "@/integrations/supabase/client";
+import { getPublishedPortfolio } from "@/lib/portfolio.functions";
 
 export type PortfolioItem = {
   id: string;
@@ -87,16 +88,7 @@ async function withSignedUrls<T extends { image_path: string | null }>(rows: T[]
 
 export const publishedPortfolioQuery = queryOptions({
   queryKey: ["portfolio", "published"],
-  queryFn: async (): Promise<PortfolioItem[]> => {
-    const { data, error } = await supabase
-      .from("portfolio_items")
-      .select("id, title, category, caption, tags, image_path, published, sort_order")
-      .eq("published", true)
-      .order("sort_order", { ascending: true })
-      .order("created_at", { ascending: false });
-    if (error) throw error;
-    return withSignedUrls(data ?? []);
-  },
+  queryFn: async (): Promise<PortfolioItem[]> => getPublishedPortfolio(),
 });
 
 export const adminPortfolioQuery = queryOptions({

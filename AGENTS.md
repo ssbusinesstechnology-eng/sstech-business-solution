@@ -14,3 +14,4 @@
 - Public-facing pages use the Copper Glass system with Sora headings, Manrope body copy, faceted geometry and reduced-motion-safe CSS animation; admin workflows retain their functional structure.
 - Public AI recommendations are explicit one-click requests using the server-held AI Gateway key, low reasoning, bounded inputs and catalogue-only output; no background calls or automatic retries.
 - Recommendation PDFs are generated in the visitor's browser and optional follow-up details reuse the existing enquiry workflow, so neither action triggers another AI request.
+- Administrator roles are never self-assigned; portfolio storage is staff-only and public images are exposed solely through short-lived links for published records.
