@@ -47,6 +47,12 @@
 ## Visual direction
 - [x] Copper Glass palette, Sora/Manrope typography and faceted motion system
 - [x] Asymmetric, technology-forward public presentation with reduced-motion support
+- [x] Mobile motion optimised with lighter blur/shadows and static decorative shards
+
+## Project advisor
+- [x] Public goals, budget and timeline form with one-click AI package recommendation
+- [x] Tailored next-step brief and WhatsApp handoff using the existing contact flow
+- [x] AI runs only on explicit visitor action with bounded catalogue context
 
 ## Pending
 - [ ] Publish so the new pages and metadata reach the live address

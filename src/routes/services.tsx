@@ -5,6 +5,7 @@ import { PageHeader, Section } from "@/components/Section";
 import { Reveal } from "@/components/Reveal";
 import { SiteLayout } from "@/components/SiteLayout";
 import { PricingSection } from "@/components/sections/PricingSection";
+import { ProjectAdvisor } from "@/components/sections/ProjectAdvisor";
 import { ProcessSection } from "@/components/sections/ProcessSection";
 import { ServicesSection } from "@/components/sections/ServicesSection";
 import { Button } from "@/components/ui/button";
@@ -59,6 +60,8 @@ function ServicesPage() {
         title="Our full service list"
         description="Each area can be delivered on its own or combined into one programme of work."
       />
+
+      <ProjectAdvisor />
 
       <PricingSection />
 

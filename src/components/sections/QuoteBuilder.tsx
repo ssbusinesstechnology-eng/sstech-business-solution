@@ -115,9 +115,9 @@ export function QuoteBuilder({ currency }: { currency: Currency }) {
 
   return (
     <Reveal className="mt-14">
-      <div id="quote-builder" className="rounded-2xl surface-card p-6 md:p-8">
+      <div id="quote-builder" className="surface-card p-6 md:p-8">
         <div className="flex items-center gap-3">
-          <span className="grid h-10 w-10 place-items-center rounded-xl bg-accent/15 text-accent">
+          <span className="grid h-10 w-10 place-items-center bg-accent/15 text-accent">
             <Calculator className="h-5 w-5" />
           </span>
           <div>
@@ -138,7 +138,7 @@ export function QuoteBuilder({ currency }: { currency: Currency }) {
                 <button
                   key={t.name}
                   onClick={() => setTierName(t.name)}
-                  className={`rounded-full border px-4 py-1.5 text-xs font-medium transition-colors ${
+                   className={`border px-4 py-1.5 text-xs font-medium transition-colors ${
                     t.name === tierName
                       ? "border-primary bg-primary text-primary-foreground"
                       : "border-border text-muted-foreground hover:border-primary/60 hover:text-foreground"
@@ -159,7 +159,7 @@ export function QuoteBuilder({ currency }: { currency: Currency }) {
                 return (
                   <li
                     key={addon.id}
-                    className={`rounded-xl border p-4 transition-colors ${
+                     className={`border p-4 transition-colors ${
                       active ? "border-primary/60 bg-primary/5" : "border-border"
                     }`}
                   >
@@ -215,7 +215,7 @@ export function QuoteBuilder({ currency }: { currency: Currency }) {
             </ul>
           </div>
 
-          <aside className="h-fit rounded-2xl border border-primary/40 bg-surface p-6 lg:sticky lg:top-24">
+           <aside className="h-fit border border-primary/40 bg-surface p-6 lg:sticky lg:top-24">
             <p className="text-xs font-semibold uppercase tracking-widest text-accent">
               Your estimate
             </p>
@@ -273,7 +273,7 @@ export function QuoteBuilder({ currency }: { currency: Currency }) {
                 onChange={(e) => setDetails({ ...details, requirements: e.target.value })}
               />
             </div>
-            <Button disabled={sending} onClick={send} className="mt-5 w-full rounded-full">
+            <Button disabled={sending} onClick={send} className="mt-5 w-full rounded-none">
               <MessageCircle className="mr-2 h-4 w-4" />
               {sending ? "Sending…" : "Get a Quote on WhatsApp"}
             </Button>
