@@ -5,7 +5,7 @@ export const SITE_NAME = "S&S Business Solutions";
 export const TAGLINE = "Build. Brand. Digitize. Grow.";
 
 export const EMAIL = "ssbusinesstechnology@gmail.com";
-export const WHATSAPP_PRIMARY = "254713268806";
+export const WHATSAPP_PRIMARY = "254101106243";
 export const WHATSAPP_SECONDARY = "254115323604";
 
 /** Absolute URL used for Open Graph / Twitter previews. */

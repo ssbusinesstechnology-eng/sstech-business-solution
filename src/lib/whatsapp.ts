@@ -119,3 +119,32 @@ export function portfolioMessage(item: { title: string; category: string }) {
     "I'd like something similar — could you quote me?",
   ]);
 }
+
+export function projectRecommendationMessage(input: {
+  goals: string;
+  budget: string;
+  timeline: string;
+  recommendation: {
+    serviceArea: string;
+    packageName: string;
+    summary: string;
+    nextSteps: string[];
+  };
+}) {
+  return compose([
+    "*AI-assisted project brief*",
+    "",
+    `Goals: ${input.goals}`,
+    `Budget: ${input.budget}`,
+    `Timeline: ${input.timeline}`,
+    "",
+    `Recommended service: *${input.recommendation.serviceArea}*`,
+    `Suggested package: *${input.recommendation.packageName}*`,
+    input.recommendation.summary,
+    "",
+    "Suggested next steps:",
+    ...input.recommendation.nextSteps.map((step) => `• ${step}`),
+    "",
+    "Please review this recommendation and confirm the best scope with me.",
+  ]);
+}
