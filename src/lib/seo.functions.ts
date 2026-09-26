@@ -19,6 +19,14 @@ type SearchRow = {
 
 type SiteEntry = { siteUrl: string; permissionLevel?: string };
 
+type SeoTotals = {
+  clicks: number;
+  impressions: number;
+  ctr: number;
+  previous_clicks: number;
+  previous_impressions: number;
+};
+
 export type SeoSnapshot = {
   id: string;
   site_url: string;
@@ -28,7 +36,7 @@ export type SeoSnapshot = {
   previous_end: string;
   query_rows: SearchRow[];
   page_rows: SearchRow[];
-  totals: Record<string, number>;
+  totals: SeoTotals;
   created_at: string;
 };
 
@@ -135,8 +143,14 @@ function totalRows(rows: SearchRow[]) {
       clicks: total.clicks + (row.clicks ?? 0),
       impressions: total.impressions + (row.impressions ?? 0),
     }),
-    { clicks: 0, impressions: 0 },
+    { clicks: 0, impressions: 0 } as { clicks: number; impressions: number },
   );
+}
+
+async function requireAdmin(
+  supabase: Parameters<typeof requireSupabaseAuth.options.server>[0] extends never ? never : never,
+) {
+  return supabase;
 }
 
 async function queryPerformance(siteUrl: string, dimension: "query" | "page", startDate: string, endDate: string) {
@@ -159,8 +173,13 @@ async function queryPerformance(siteUrl: string, dimension: "query" | "page", st
 export const refreshSeoSnapshot = createServerFn({ method: "POST" })
   .middleware([requireSupabaseAuth])
   .handler(async ({ context }) => {
-    const role = await context.supabase.rpc("has_role", { _role: "admin", _user_id: context.userId });
-    if (role.error || !role.data) throw new Error("Admin access is required.");
+    const { data: role, error: roleError } = await context.supabase
+      .from("user_roles")
+      .select("role")
+      .eq("user_id", context.userId)
+      .eq("role", "admin")
+      .maybeSingle();
+    if (roleError || !role) throw new Error("Admin access is required.");
 
     const end = new Date();
     end.setUTCDate(end.getUTCDate() - 3);
@@ -228,8 +247,13 @@ const recommendationSchema = z.object({
 export const generateAiRecommendations = createServerFn({ method: "POST" })
   .middleware([requireSupabaseAuth])
   .handler(async ({ context }) => {
-    const role = await context.supabase.rpc("has_role", { _role: "admin", _user_id: context.userId });
-    if (role.error || !role.data) throw new Error("Admin access is required.");
+    const { data: role, error: roleError } = await context.supabase
+      .from("user_roles")
+      .select("role")
+      .eq("user_id", context.userId)
+      .eq("role", "admin")
+      .maybeSingle();
+    if (roleError || !role) throw new Error("Admin access is required.");
     const { data: snapshot, error } = await context.supabase
       .from("seo_search_snapshots")
       .select("id, site_url, period_start, period_end, query_rows, page_rows, totals")

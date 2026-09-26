@@ -93,16 +93,16 @@ export function SeoInsightsPanel() {
           <div className="grid gap-3 sm:grid-cols-3">
             <AdminCard>
               <p className="text-xs text-muted-foreground">Clicks</p>
-              <p className="mt-1 text-2xl font-semibold">{number(totals.clicks)}</p>
+              <p className="mt-1 text-2xl font-semibold">{number(totals["clicks"])}</p>
             </AdminCard>
             <AdminCard>
               <p className="text-xs text-muted-foreground">Impressions</p>
-              <p className="mt-1 text-2xl font-semibold">{number(totals.impressions)}</p>
+              <p className="mt-1 text-2xl font-semibold">{number(totals["impressions"])}</p>
             </AdminCard>
             <AdminCard>
               <p className="text-xs text-muted-foreground">Click-through rate</p>
               <p className="mt-1 text-2xl font-semibold">
-                {typeof totals.ctr === "number" ? `${(totals.ctr * 100).toFixed(1)}%` : "0%"}
+                {typeof totals["ctr"] === "number" ? `${(totals["ctr"] * 100).toFixed(1)}%` : "0%"}
               </p>
             </AdminCard>
           </div>
