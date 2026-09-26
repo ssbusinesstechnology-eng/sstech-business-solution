@@ -70,7 +70,7 @@ export function PortfolioSection({
       <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
         {visible.map((item, i) => (
           <Reveal key={item.id} delay={i * 45}>
-            <article className="flex h-full flex-col overflow-hidden rounded-2xl border border-border bg-card transition-all duration-300 hover:-translate-y-0.5 hover:border-accent/60">
+            <article className="glass-panel flex h-full flex-col overflow-hidden transition-all duration-500 hover:-translate-y-2 hover:border-accent/60">
               {item.imageUrl ? (
                 <img
                   src={item.imageUrl}
@@ -94,7 +94,7 @@ export function PortfolioSection({
                 {item.tags.length > 0 && (
                   <p className="mt-3 text-xs text-muted-foreground">{item.tags.join(" · ")}</p>
                 )}
-                <Button asChild size="sm" variant="outline" className="mt-5 w-full rounded-full">
+                <Button asChild size="sm" variant="outline" className="mt-5 w-full rounded-none">
                   <a href={waLink(portfolioMessage(item))} target="_blank" rel="noreferrer">
                     <MessageCircle className="mr-2 h-4 w-4" /> Request something similar
                   </a>

@@ -44,5 +44,9 @@
 ## Portfolio samples
 - [x] Four supplied poster designs added to the public showcase
 
+## Visual direction
+- [x] Copper Glass palette, Sora/Manrope typography and faceted motion system
+- [x] Asymmetric, technology-forward public presentation with reduced-motion support
+
 ## Pending
 - [ ] Publish so the new pages and metadata reach the live address

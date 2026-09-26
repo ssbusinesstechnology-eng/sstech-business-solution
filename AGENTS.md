@@ -11,3 +11,4 @@
 
 - Google Search Console data is refreshed only on an authenticated staff action and cached in Lovable Cloud; AI SEO analysis runs only on explicit admin request to minimize credit use.
 - Public portfolio combines admin-managed records with the four supplied design samples kept as managed project assets; matching titles are de-duplicated.
+- Public-facing pages use the Copper Glass system with Sora headings, Manrope body copy, faceted geometry and reduced-motion-safe CSS animation; admin workflows retain their functional structure.

@@ -13,8 +13,8 @@ export function AudiencesSection({ id = "who-we-serve" }: { id?: string }) {
       <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
         {AUDIENCES.map((audience, i) => (
           <Reveal key={audience.title} delay={i * 50}>
-            <article className="flex h-full gap-4 rounded-2xl border border-border bg-card p-6 transition-colors hover:border-accent/60">
-              <span className="grid h-10 w-10 shrink-0 place-items-center rounded-lg bg-accent/15 text-primary">
+            <article className="glass-panel flex h-full gap-4 p-6 transition-all duration-300 hover:-translate-y-1 hover:border-accent/60">
+              <span className="grid h-10 w-10 shrink-0 place-items-center bg-accent/15 text-primary">
                 <audience.icon className="h-5 w-5" />
               </span>
               <div>
