@@ -147,12 +147,6 @@ function totalRows(rows: SearchRow[]) {
   );
 }
 
-async function requireAdmin(
-  supabase: Parameters<typeof requireSupabaseAuth.options.server>[0] extends never ? never : never,
-) {
-  return supabase;
-}
-
 async function queryPerformance(siteUrl: string, dimension: "query" | "page", startDate: string, endDate: string) {
   const data = (await gscRequest(
     `/webmasters/v3/sites/${encodeURIComponent(siteUrl)}/searchAnalytics/query`,
