@@ -1,10 +1,10 @@
 import ogCover from "@/assets/og-cover.jpg.asset.json";
 
-export const SITE_URL = "https://brandscape-builder-66.lovable.app";
+export const SITE_URL = "https://sstech-business-solution.lovable.app";
 export const SITE_NAME = "S&S Business Solutions";
 export const TAGLINE = "Build. Brand. Digitize. Grow.";
 
-export const EMAIL = "sstechsolutionsa@gmail.com";
+export const EMAIL = "ssbusinesstechnology@gmail.com";
 export const WHATSAPP_PRIMARY = "254713268806";
 export const WHATSAPP_SECONDARY = "254115323604";
 

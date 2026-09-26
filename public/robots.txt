@@ -13,5 +13,5 @@ Allow: /
 User-agent: *
 Allow: /
 
-Sitemap: https://brandscape-builder-66.lovable.app/sitemap.xml
+Sitemap: https://sstech-business-solution.lovable.app/sitemap.xml
 
