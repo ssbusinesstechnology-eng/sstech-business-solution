@@ -1,7 +1,5 @@
-import { createOpenAI } from "@ai-sdk/openai";
 import { queryOptions } from "@tanstack/react-query";
 import { createServerFn } from "@tanstack/react-start";
-import { streamText } from "ai";
 import { z } from "zod";
 
 import { requireSupabaseAuth } from "@/integrations/supabase/auth-middleware";
@@ -117,7 +115,10 @@ async function resolveSiteUrl() {
   );
   const exact = verified.find((entry) => entry.siteUrl === SITE_TARGET);
   if (exact) return exact.siteUrl;
-  if (verified.length === 1) return verified[0]?.siteUrl;
+  if (verified.length === 1) {
+    const onlySite = verified[0];
+    if (onlySite) return onlySite.siteUrl;
+  }
   if (verified.length === 0) {
     throw new Error("No verified Search Console property covers the published website.");
   }
@@ -240,6 +241,10 @@ export const generateAiRecommendations = createServerFn({ method: "POST" })
 
     const key = process.env["LOVABLE_API_KEY"];
     if (!key) throw new Error("AI analysis is not configured.");
+    const [{ createOpenAI }, { streamText }] = await Promise.all([
+      import("@ai-sdk/openai"),
+      import("ai"),
+    ]);
     const provider = createOpenAI({
       baseURL: AI_GATEWAY,
       apiKey: key,
