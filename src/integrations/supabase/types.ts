@@ -299,6 +299,98 @@ export type Database = {
           },
         ]
       }
+      seo_ai_recommendations: {
+        Row: {
+          action: string
+          created_at: string
+          evidence: string
+          generated_by: string | null
+          id: string
+          priority: string
+          snapshot_id: string
+          target: string
+          title: string
+          updated_at: string
+        }
+        Insert: {
+          action: string
+          created_at?: string
+          evidence: string
+          generated_by?: string | null
+          id?: string
+          priority: string
+          snapshot_id: string
+          target: string
+          title: string
+          updated_at?: string
+        }
+        Update: {
+          action?: string
+          created_at?: string
+          evidence?: string
+          generated_by?: string | null
+          id?: string
+          priority?: string
+          snapshot_id?: string
+          target?: string
+          title?: string
+          updated_at?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "seo_ai_recommendations_snapshot_id_fkey"
+            columns: ["snapshot_id"]
+            isOneToOne: false
+            referencedRelation: "seo_search_snapshots"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      seo_search_snapshots: {
+        Row: {
+          created_at: string
+          id: string
+          page_rows: Json
+          period_end: string
+          period_start: string
+          previous_end: string
+          previous_start: string
+          query_rows: Json
+          refreshed_by: string | null
+          site_url: string
+          totals: Json
+          updated_at: string
+        }
+        Insert: {
+          created_at?: string
+          id?: string
+          page_rows?: Json
+          period_end: string
+          period_start: string
+          previous_end: string
+          previous_start: string
+          query_rows?: Json
+          refreshed_by?: string | null
+          site_url: string
+          totals?: Json
+          updated_at?: string
+        }
+        Update: {
+          created_at?: string
+          id?: string
+          page_rows?: Json
+          period_end?: string
+          period_start?: string
+          previous_end?: string
+          previous_start?: string
+          query_rows?: Json
+          refreshed_by?: string | null
+          site_url?: string
+          totals?: Json
+          updated_at?: string
+        }
+        Relationships: []
+      }
       services: {
         Row: {
           active: boolean
