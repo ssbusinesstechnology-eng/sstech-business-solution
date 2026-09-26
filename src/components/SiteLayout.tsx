@@ -142,7 +142,7 @@ function SiteFooter() {
             <li className="flex items-center gap-2">
               <Phone className="h-4 w-4 text-accent" />
               <a href={waLink(generalMessage(), WHATSAPP_PRIMARY)} target="_blank" rel="noreferrer" className="hover:text-accent">
-                +254 713 268806
+                +254 101 106 243
               </a>
             </li>
             <li className="flex items-center gap-2">

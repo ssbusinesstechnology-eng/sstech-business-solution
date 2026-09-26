@@ -15,3 +15,4 @@
 - Public AI recommendations are explicit one-click requests using the server-held AI Gateway key, low reasoning, bounded inputs and catalogue-only output; no background calls or automatic retries.
 - Recommendation PDFs are generated in the visitor's browser and optional follow-up details reuse the existing enquiry workflow, so neither action triggers another AI request.
 - Administrator roles are never self-assigned; portfolio storage is staff-only and public images are exposed solely through short-lived links for published records.
+- The Services technology globe is browser-only, pauses outside the viewport, caps pixel density, and becomes static for reduced motion to protect mobile performance.

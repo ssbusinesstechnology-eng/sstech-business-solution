@@ -48,6 +48,7 @@
 - [x] Copper Glass palette, Sora/Manrope typography and faceted motion system
 - [x] Asymmetric, technology-forward public presentation with reduced-motion support
 - [x] Mobile motion optimised with lighter blur/shadows and static decorative shards
+- [x] Lightweight interactive technology globe on Services with off-screen pausing and a static reduced-motion state
 
 ## Project advisor
 - [x] Public goals, budget and timeline form with one-click AI package recommendation
