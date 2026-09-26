@@ -99,6 +99,10 @@
   );
   --shadow-glow: 0 28px 75px -28px color-mix(in oklab, var(--accent) 50%, transparent);
   --shadow-card: 0 24px 60px -38px color-mix(in oklab, var(--ink) 55%, transparent);
+  --globe-ink: #160c08;
+  --globe-primary: #6e3519;
+  --globe-accent: #d79a45;
+  --globe-paper: #f7f4ef;
 }
 
 @layer base {
@@ -146,7 +150,7 @@
 @keyframes rise {
   from {
     opacity: 0;
-    transform: translateY(20px);
+    transform: translate3d(0, 18px, 0);
   }
   to {
     opacity: 1;
@@ -186,7 +190,12 @@
 }
 
 .reveal.is-visible {
-  animation: rise 0.7s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+  animation: rise 0.85s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  will-change: transform, opacity;
+}
+
+.reveal.is-visible > * {
+  transform: translateZ(0);
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -199,6 +208,7 @@
   }
   .faceted-form, .facet-shard, .reveal.is-visible { animation: none; }
   .reveal { opacity: 1; }
+  .technology-globe canvas { pointer-events: none; }
 }
 
 @media (max-width: 640px) {
@@ -211,5 +221,9 @@
   }
   .glass-panel {
     backdrop-filter: blur(8px);
+  }
+  .technology-globe {
+    contain: layout paint size;
+    touch-action: pan-y;
   }
 }

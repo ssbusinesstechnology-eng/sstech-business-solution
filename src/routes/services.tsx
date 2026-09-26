@@ -8,6 +8,7 @@ import { PricingSection } from "@/components/sections/PricingSection";
 import { ProjectAdvisor } from "@/components/sections/ProjectAdvisor";
 import { ProcessSection } from "@/components/sections/ProcessSection";
 import { ServicesSection } from "@/components/sections/ServicesSection";
+import { TechnologyGlobeSection } from "@/components/sections/TechnologyGlobeSection";
 import { Button } from "@/components/ui/button";
 import { DESIGN_PRICING } from "@/lib/content";
 import { breadcrumbJsonLd, seo } from "@/lib/site";
@@ -60,6 +61,8 @@ function ServicesPage() {
         title="Our full service list"
         description="Each area can be delivered on its own or combined into one programme of work."
       />
+
+      <TechnologyGlobeSection />
 
       <ProjectAdvisor />
 
