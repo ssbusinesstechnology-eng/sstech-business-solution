@@ -53,6 +53,8 @@
 - [x] Public goals, budget and timeline form with one-click AI package recommendation
 - [x] Tailored next-step brief and WhatsApp handoff using the existing contact flow
 - [x] AI runs only on explicit visitor action with bounded catalogue context
+- [x] Polished on-device PDF download for each tailored recommendation
+- [x] Optional post-recommendation contact step saved to the enquiries list
 
 ## Pending
 - [ ] Publish so the new pages and metadata reach the live address
