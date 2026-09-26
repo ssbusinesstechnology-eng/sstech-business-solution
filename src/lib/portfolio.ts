@@ -1,5 +1,9 @@
 import { queryOptions } from "@tanstack/react-query";
 
+import artExhibition from "@/assets/portfolio/art-exhibition-day.jpg.asset.json";
+import creativeVibes from "@/assets/portfolio/creative-vibes-event.jpg.asset.json";
+import pizzaTime from "@/assets/portfolio/pizza-time-poster.jpg.asset.json";
+import recruitmentCampaign from "@/assets/portfolio/recruitment-campaign.jpg.asset.json";
 import { supabase } from "@/integrations/supabase/client";
 
 export type PortfolioItem = {
@@ -15,6 +19,54 @@ export type PortfolioItem = {
 };
 
 const BUCKET = "portfolio";
+
+/** Selected real work supplied in the S&S design portfolio. */
+export const featuredPortfolioItems: PortfolioItem[] = [
+  {
+    id: "featured-creative-vibes",
+    title: "Creative Vibes Event Poster",
+    category: "Marketing & Graphic Design",
+    caption: "Art, music, food and fun event campaign artwork.",
+    tags: ["event poster", "creative campaign", "social media"],
+    image_path: null,
+    published: true,
+    sort_order: -40,
+    imageUrl: creativeVibes.url,
+  },
+  {
+    id: "featured-art-exhibition",
+    title: "Art Exhibition Day",
+    category: "Marketing & Graphic Design",
+    caption: "School art exhibition invitation with an expressive editorial style.",
+    tags: ["invitation", "school event", "poster"],
+    image_path: null,
+    published: true,
+    sort_order: -30,
+    imageUrl: artExhibition.url,
+  },
+  {
+    id: "featured-pizza-time",
+    title: "Pizza Time Product Poster",
+    category: "Marketing & Graphic Design",
+    caption: "Food product promotion created for digital campaign use.",
+    tags: ["product poster", "food", "promotion"],
+    image_path: null,
+    published: true,
+    sort_order: -20,
+    imageUrl: pizzaTime.url,
+  },
+  {
+    id: "featured-recruitment",
+    title: "Recruitment Campaign Design",
+    category: "Marketing & Graphic Design",
+    caption: "Professional recruitment advert for a modern marketing role.",
+    tags: ["recruitment", "business campaign", "social media"],
+    image_path: null,
+    published: true,
+    sort_order: -10,
+    imageUrl: recruitmentCampaign.url,
+  },
+];
 
 async function withSignedUrls<T extends { image_path: string | null }>(rows: T[]) {
   const paths = rows.map((r) => r.image_path).filter((p): p is string => Boolean(p));

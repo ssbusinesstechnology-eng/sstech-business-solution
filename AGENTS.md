@@ -8,3 +8,6 @@
 > Commits you push to the connected branch sync back to Lovable and show up in
 > the editor, so keep the branch in a working state.
 <!-- LOVABLE:END -->
+
+- Google Search Console data is refreshed only on an authenticated staff action and cached in Lovable Cloud; AI SEO analysis runs only on explicit admin request to minimize credit use.
+- Public portfolio combines admin-managed records with the four supplied design samples kept as managed project assets; matching titles are de-duplicated.

@@ -5,7 +5,7 @@ import { useMemo, useState } from "react";
 import { Reveal } from "@/components/Reveal";
 import { Section } from "@/components/Section";
 import { Button } from "@/components/ui/button";
-import { publishedPortfolioQuery } from "@/lib/portfolio";
+import { featuredPortfolioItems, publishedPortfolioQuery } from "@/lib/portfolio";
 import { portfolioMessage, waLink } from "@/lib/whatsapp";
 
 export function PortfolioSection({
@@ -15,7 +15,14 @@ export function PortfolioSection({
   id?: string;
   limit?: number;
 }) {
-  const { data: items = [], isLoading } = useQuery(publishedPortfolioQuery);
+  const { data: databaseItems = [], isLoading } = useQuery(publishedPortfolioQuery);
+  const items = useMemo(() => {
+    const existingTitles = new Set(databaseItems.map((item) => item.title.toLowerCase()));
+    return [
+      ...featuredPortfolioItems.filter((item) => !existingTitles.has(item.title.toLowerCase())),
+      ...databaseItems,
+    ];
+  }, [databaseItems]);
   const [filter, setFilter] = useState("All");
 
   const categories = useMemo(
@@ -69,7 +76,7 @@ export function PortfolioSection({
                   src={item.imageUrl}
                   alt={item.title}
                   loading="lazy"
-                  className="aspect-4/3 w-full object-cover"
+                  className="aspect-4/3 w-full bg-muted object-contain"
                 />
               ) : (
                 <div className="gradient-brand grid aspect-4/3 w-full place-items-center px-6 text-center">
