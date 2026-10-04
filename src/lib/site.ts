@@ -1,6 +1,6 @@
 import ogCover from "@/assets/og-cover.jpg.asset.json";
 
-export const SITE_URL = "https://sstech-business-solution.lovable.app";
+export const SITE_URL = "https://sstechsolutions.co.ke";
 export const SITE_NAME = "S&S Business Solutions";
 export const TAGLINE = "Build. Brand. Digitize. Grow.";
 
