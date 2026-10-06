@@ -1,6 +1,6 @@
 export type ProjectRecommendation = {
   serviceArea: string;
-  packageName: "Starter" | "Basic" | "Premium" | "Pro";
+  packageName: string;
   summary: string;
   budgetFit: string;
   timelineFit: string;

@@ -197,9 +197,6 @@ export const WHY_US = [
   { icon: Mail, title: "Ongoing support", body: "Maintenance, updates and technical help after launch." },
 ];
 
-export type { Tier, Addon } from "./pricing";
-export { TIERS, ADDONS } from "./pricing";
-
 export const DESIGN_PRICING = [
   { item: "Church Poster", price: "KES 800 – 2,000" },
   { item: "Event Poster", price: "KES 1,000 – 2,500" },
