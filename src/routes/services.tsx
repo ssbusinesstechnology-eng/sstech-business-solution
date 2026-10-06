@@ -1,5 +1,3 @@
-import { Link } from "@tanstack/react-router";
-import { Section } from "@/components/Section";
 import { SERVICE_PAGES } from "@/lib/service-pages";
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { MessageCircle } from "lucide-react";
