@@ -1,3 +1,6 @@
+import { Link } from "@tanstack/react-router";
+import { Section } from "@/components/Section";
+import { SERVICE_PAGES } from "@/lib/service-pages";
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { MessageCircle } from "lucide-react";
 
@@ -56,6 +59,17 @@ function ServicesPage() {
         </div>
       </PageHeader>
 
+      <Section eyebrow="Explore" title="Our six main service areas">
+        <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+          {SERVICE_PAGES.map((sp) => (
+            <Link key={sp.slug} to={sp.path} className="glass-panel block p-6 transition-colors hover:border-primary">
+              <h3 className="font-sans text-lg font-semibold">{sp.label}</h3>
+              <p className="mt-2 text-sm text-muted-foreground">{sp.intro}</p>
+              <span className="mt-4 inline-flex text-sm font-semibold text-primary">Learn More →</span>
+            </Link>
+          ))}
+        </div>
+      </Section>
       <ServicesSection
         detailed
         title="Our full service list"
