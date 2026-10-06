@@ -12,12 +12,18 @@ import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as AboutRouteImport } from './routes/about'
 import { Route as AdminRouteImport } from './routes/admin'
+import { Route as BrandingRouteImport } from './routes/branding'
+import { Route as BusinessTechnologyRouteImport } from './routes/business-technology'
 import { Route as ChurchPosterDesignRouteImport } from './routes/church-poster-design'
 import { Route as ContactRouteImport } from './routes/contact'
+import { Route as DigitalMarketingRouteImport } from './routes/digital-marketing'
 import { Route as PortfolioRouteImport } from './routes/portfolio'
+import { Route as PosInventoryRouteImport } from './routes/pos-inventory'
+import { Route as ProfessionalEmailRouteImport } from './routes/professional-email'
 import { Route as ServicesRouteImport } from './routes/services'
 import { Route as SitemapDotxmlRouteImport } from './routes/sitemap[.]xml'
 import { Route as SolutionsRouteImport } from './routes/solutions'
+import { Route as WebDesignRouteImport } from './routes/web-design'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
@@ -34,6 +40,16 @@ const AdminRoute = AdminRouteImport.update({
   path: '/admin',
   getParentRoute: () => rootRouteImport,
 } as any)
+const BrandingRoute = BrandingRouteImport.update({
+  id: '/branding',
+  path: '/branding',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const BusinessTechnologyRoute = BusinessTechnologyRouteImport.update({
+  id: '/business-technology',
+  path: '/business-technology',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const ChurchPosterDesignRoute = ChurchPosterDesignRouteImport.update({
   id: '/church-poster-design',
   path: '/church-poster-design',
@@ -44,9 +60,24 @@ const ContactRoute = ContactRouteImport.update({
   path: '/contact',
   getParentRoute: () => rootRouteImport,
 } as any)
+const DigitalMarketingRoute = DigitalMarketingRouteImport.update({
+  id: '/digital-marketing',
+  path: '/digital-marketing',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const PortfolioRoute = PortfolioRouteImport.update({
   id: '/portfolio',
   path: '/portfolio',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const PosInventoryRoute = PosInventoryRouteImport.update({
+  id: '/pos-inventory',
+  path: '/pos-inventory',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ProfessionalEmailRoute = ProfessionalEmailRouteImport.update({
+  id: '/professional-email',
+  path: '/professional-email',
   getParentRoute: () => rootRouteImport,
 } as any)
 const ServicesRoute = ServicesRouteImport.update({
@@ -64,40 +95,63 @@ const SolutionsRoute = SolutionsRouteImport.update({
   path: '/solutions',
   getParentRoute: () => rootRouteImport,
 } as any)
+const WebDesignRoute = WebDesignRouteImport.update({
+  id: '/web-design',
+  path: '/web-design',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
   '/admin': typeof AdminRoute
+  '/branding': typeof BrandingRoute
+  '/business-technology': typeof BusinessTechnologyRoute
   '/church-poster-design': typeof ChurchPosterDesignRoute
   '/contact': typeof ContactRoute
+  '/digital-marketing': typeof DigitalMarketingRoute
   '/portfolio': typeof PortfolioRoute
+  '/pos-inventory': typeof PosInventoryRoute
+  '/professional-email': typeof ProfessionalEmailRoute
   '/services': typeof ServicesRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/solutions': typeof SolutionsRoute
+  '/web-design': typeof WebDesignRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
   '/admin': typeof AdminRoute
+  '/branding': typeof BrandingRoute
+  '/business-technology': typeof BusinessTechnologyRoute
   '/church-poster-design': typeof ChurchPosterDesignRoute
   '/contact': typeof ContactRoute
+  '/digital-marketing': typeof DigitalMarketingRoute
   '/portfolio': typeof PortfolioRoute
+  '/pos-inventory': typeof PosInventoryRoute
+  '/professional-email': typeof ProfessionalEmailRoute
   '/services': typeof ServicesRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/solutions': typeof SolutionsRoute
+  '/web-design': typeof WebDesignRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
   '/admin': typeof AdminRoute
+  '/branding': typeof BrandingRoute
+  '/business-technology': typeof BusinessTechnologyRoute
   '/church-poster-design': typeof ChurchPosterDesignRoute
   '/contact': typeof ContactRoute
+  '/digital-marketing': typeof DigitalMarketingRoute
   '/portfolio': typeof PortfolioRoute
+  '/pos-inventory': typeof PosInventoryRoute
+  '/professional-email': typeof ProfessionalEmailRoute
   '/services': typeof ServicesRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/solutions': typeof SolutionsRoute
+  '/web-design': typeof WebDesignRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -105,46 +159,70 @@ export interface FileRouteTypes {
     | '/'
     | '/about'
     | '/admin'
+    | '/branding'
+    | '/business-technology'
     | '/church-poster-design'
     | '/contact'
+    | '/digital-marketing'
     | '/portfolio'
+    | '/pos-inventory'
+    | '/professional-email'
     | '/services'
     | '/sitemap.xml'
     | '/solutions'
+    | '/web-design'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
     | '/about'
     | '/admin'
+    | '/branding'
+    | '/business-technology'
     | '/church-poster-design'
     | '/contact'
+    | '/digital-marketing'
     | '/portfolio'
+    | '/pos-inventory'
+    | '/professional-email'
     | '/services'
     | '/sitemap.xml'
     | '/solutions'
+    | '/web-design'
   id:
     | '__root__'
     | '/'
     | '/about'
     | '/admin'
+    | '/branding'
+    | '/business-technology'
     | '/church-poster-design'
     | '/contact'
+    | '/digital-marketing'
     | '/portfolio'
+    | '/pos-inventory'
+    | '/professional-email'
     | '/services'
     | '/sitemap.xml'
     | '/solutions'
+    | '/web-design'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   AboutRoute: typeof AboutRoute
   AdminRoute: typeof AdminRoute
+  BrandingRoute: typeof BrandingRoute
+  BusinessTechnologyRoute: typeof BusinessTechnologyRoute
   ChurchPosterDesignRoute: typeof ChurchPosterDesignRoute
   ContactRoute: typeof ContactRoute
+  DigitalMarketingRoute: typeof DigitalMarketingRoute
   PortfolioRoute: typeof PortfolioRoute
+  PosInventoryRoute: typeof PosInventoryRoute
+  ProfessionalEmailRoute: typeof ProfessionalEmailRoute
   ServicesRoute: typeof ServicesRoute
   SitemapDotxmlRoute: typeof SitemapDotxmlRoute
   SolutionsRoute: typeof SolutionsRoute
+  WebDesignRoute: typeof WebDesignRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -170,6 +248,20 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AdminRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/branding': {
+      id: '/branding'
+      path: '/branding'
+      fullPath: '/branding'
+      preLoaderRoute: typeof BrandingRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/business-technology': {
+      id: '/business-technology'
+      path: '/business-technology'
+      fullPath: '/business-technology'
+      preLoaderRoute: typeof BusinessTechnologyRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/church-poster-design': {
       id: '/church-poster-design'
       path: '/church-poster-design'
@@ -184,11 +276,32 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ContactRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/digital-marketing': {
+      id: '/digital-marketing'
+      path: '/digital-marketing'
+      fullPath: '/digital-marketing'
+      preLoaderRoute: typeof DigitalMarketingRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/portfolio': {
       id: '/portfolio'
       path: '/portfolio'
       fullPath: '/portfolio'
       preLoaderRoute: typeof PortfolioRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/pos-inventory': {
+      id: '/pos-inventory'
+      path: '/pos-inventory'
+      fullPath: '/pos-inventory'
+      preLoaderRoute: typeof PosInventoryRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/professional-email': {
+      id: '/professional-email'
+      path: '/professional-email'
+      fullPath: '/professional-email'
+      preLoaderRoute: typeof ProfessionalEmailRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/services': {
@@ -212,6 +325,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof SolutionsRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/web-design': {
+      id: '/web-design'
+      path: '/web-design'
+      fullPath: '/web-design'
+      preLoaderRoute: typeof WebDesignRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
@@ -219,12 +339,18 @@ const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AboutRoute: AboutRoute,
   AdminRoute: AdminRoute,
+  BrandingRoute: BrandingRoute,
+  BusinessTechnologyRoute: BusinessTechnologyRoute,
   ChurchPosterDesignRoute: ChurchPosterDesignRoute,
   ContactRoute: ContactRoute,
+  DigitalMarketingRoute: DigitalMarketingRoute,
   PortfolioRoute: PortfolioRoute,
+  PosInventoryRoute: PosInventoryRoute,
+  ProfessionalEmailRoute: ProfessionalEmailRoute,
   ServicesRoute: ServicesRoute,
   SitemapDotxmlRoute: SitemapDotxmlRoute,
   SolutionsRoute: SolutionsRoute,
+  WebDesignRoute: WebDesignRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

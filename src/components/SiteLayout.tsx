@@ -5,6 +5,7 @@ import { useState, type ReactNode } from "react";
 import { Logo } from "@/components/Logo";
 import { Button } from "@/components/ui/button";
 import { NAV } from "@/lib/content";
+import { SERVICE_PAGES } from "@/lib/service-pages";
 import { EMAIL } from "@/lib/site";
 import {
   WHATSAPP_PRIMARY,
@@ -53,6 +54,18 @@ function SiteHeader() {
               {item.label}
             </Link>
           ))}
+          <div className="group relative">
+            <button type="button" className="text-sm text-muted-foreground transition-colors hover:text-primary">
+              Our services ▾
+            </button>
+            <div className="invisible absolute right-0 top-full z-50 w-72 border border-border bg-background p-2 opacity-0 shadow-lg transition-opacity group-focus-within:visible group-focus-within:opacity-100 group-hover:visible group-hover:opacity-100">
+              {SERVICE_PAGES.map((sp) => (
+                <Link key={sp.slug} to={sp.path} className="block px-3 py-2 text-sm hover:bg-secondary hover:text-primary">
+                  {sp.label}
+                </Link>
+              ))}
+            </div>
+          </div>
         </nav>
 
         <div className="flex items-center gap-2">
@@ -83,6 +96,16 @@ function SiteHeader() {
                   className="block rounded-lg px-3 py-2.5 text-sm text-foreground transition-colors hover:bg-secondary"
                 >
                   {item.label}
+                </Link>
+              </li>
+            ))}
+          </ul>
+          <p className="mt-3 px-3 text-xs font-semibold uppercase tracking-wider text-muted-foreground">Our services</p>
+          <ul className="mt-1 grid grid-cols-1 gap-1 sm:grid-cols-2">
+            {SERVICE_PAGES.map((sp) => (
+              <li key={sp.slug}>
+                <Link to={sp.path} onClick={() => setOpen(false)} className="block px-3 py-2 text-sm hover:bg-secondary">
+                  {sp.label}
                 </Link>
               </li>
             ))}
