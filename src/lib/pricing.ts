@@ -211,11 +211,18 @@ export const PACKAGE_CATEGORIES: PackageCategory[] = [
 ];
 
 export const ADDITIONAL_PAGES = {
+  /** Monthly price in KES per additional page. */
+  kes: 1000,
   label: "Additional Pages — KES 1,000 / month per page",
   description: "Add extra website pages to any subscription package.",
 };
 
 export const PROFESSIONAL_EMAIL = {
+  /** Monthly price in KES per mailbox. */
+  kes: 250,
+  /** Package that already includes one mailbox. */
+  includedWithPlan: "Corporate Premium",
+  includedMailboxes: 1,
   name: "Professional Email",
   priceLabel: "KES 250 / month per mailbox",
   description: "Professional business email hosted on your business domain.",

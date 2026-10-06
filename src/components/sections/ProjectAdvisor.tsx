@@ -3,6 +3,7 @@ import { ArrowRight, Check, Compass, Download, MessageCircle, UserRound } from "
 import { useState } from "react";
 import { toast } from "sonner";
 
+import { ClientRequestForm } from "@/components/sections/ClientRequestForm";
 import { Reveal } from "@/components/Reveal";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -21,11 +22,11 @@ import { submitContactLead } from "@/lib/leads.functions";
 import { projectRecommendationMessage, waLink } from "@/lib/whatsapp";
 
 const BUDGETS = [
-  "Under KES 20,000",
-  "KES 20,000–50,000",
-  "KES 50,000–100,000",
-  "KES 100,000–200,000",
-  "Above KES 200,000",
+  "Under KES 1,500 / month",
+  "KES 1,500–2,500 / month",
+  "KES 2,500–4,000 / month",
+  "Above KES 4,000 / month",
+  "Custom project (quote needed)",
   "Not decided yet",
 ];
 
@@ -50,6 +51,7 @@ export function ProjectAdvisor() {
   const [sending, setSending] = useState(false);
   const [followUpSent, setFollowUpSent] = useState(false);
   const [contact, setContact] = useState({ name: "", email: "", phone: "" });
+  const [showRequestForm, setShowRequestForm] = useState(false);
 
   async function submit() {
     if (goals.trim().length < 20 || !budget || !timeline) {
@@ -288,6 +290,28 @@ export function ProjectAdvisor() {
             )}
           </aside>
         </Reveal>
+      </div>
+
+      <div id="client-request" className="relative mx-auto mt-14 max-w-7xl px-5 md:px-8">
+        <div className="border border-background/15 bg-background/6 p-6 backdrop-blur-md md:p-8">
+          <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
+            <div className="max-w-2xl">
+              <p className="text-xs font-semibold uppercase tracking-[0.2em] text-accent">Client request</p>
+              <h3 className="mt-2 text-2xl font-bold text-background">Prefer a guided request?</h3>
+              <p className="mt-2 text-sm leading-relaxed text-background/65">
+                Answer a few simple questions, see a tailored recommendation, and send your request to S&amp;S Business Solutions.
+              </p>
+            </div>
+            <Button type="button" variant={showRequestForm ? "outline" : "default"} size="lg" onClick={() => setShowRequestForm((open) => !open)} aria-expanded={showRequestForm} className={showRequestForm ? "rounded-none border-background/25 bg-transparent text-background hover:bg-background/10 hover:text-background" : "rounded-none"}>
+              {showRequestForm ? "Close request form" : "Start a request"}
+            </Button>
+          </div>
+          {showRequestForm && (
+            <div className="mt-8 border-t border-background/15 pt-8">
+              <ClientRequestForm budgets={BUDGETS} initialGoals={goals} initialBudget={budget} advisorRecommendation={recommendation} />
+            </div>
+          )}
+        </div>
       </div>
     </section>
   );
