@@ -113,6 +113,10 @@ export function enquiryMessage(input: {
   ]);
 }
 
+export function designEnquiryMessage(service: string) {
+  return `Hi S&S Business Solutions! I'd like to enquire about ${service}. Please share the available options and pricing.`;
+}
+
 export function portfolioMessage(item: { title: string; category: string }) {
   return compose([
     `I saw *${item.title}* (${item.category}) on your portfolio.`,

@@ -13,11 +13,16 @@ export function PosSection({ id = "pos" }: { id?: string }) {
           <p className="text-xs font-semibold uppercase tracking-[0.2em] text-accent">
             Business technology
           </p>
-          <h2 className="mt-3 font-sans text-3xl font-bold sm:text-4xl">{POS.name}</h2>
+          <div className="mt-3 flex flex-wrap items-center gap-3">
+            <h2 className="font-sans text-3xl font-bold sm:text-4xl">{POS.name}</h2>
+            <span className="border border-accent bg-accent/15 px-3 py-1 text-xs font-semibold uppercase tracking-widest text-accent">
+              Coming Soon
+            </span>
+          </div>
           <p className="mt-4 text-background/75">{POS.intro}</p>
           <Button asChild className="mt-7 rounded-none">
             <a href={waLink(posMessage())} target="_blank" rel="noreferrer">
-              <MessageCircle className="mr-2 h-4 w-4" /> Talk to us about S&amp;S POS
+              <MessageCircle className="mr-2 h-4 w-4" /> Get notified when S&amp;S POS launches
             </a>
           </Button>
         </Reveal>
