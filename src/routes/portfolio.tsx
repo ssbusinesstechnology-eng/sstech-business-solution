@@ -2,7 +2,6 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 
 import { PageHeader } from "@/components/Section";
 import { SiteLayout } from "@/components/SiteLayout";
-import { PortfolioSection } from "@/components/sections/PortfolioSection";
 import { Button } from "@/components/ui/button";
 import { breadcrumbJsonLd, seo } from "@/lib/site";
 
@@ -43,8 +42,6 @@ function PortfolioPage() {
           </Button>
         </div>
       </PageHeader>
-
-      <PortfolioSection />
     </SiteLayout>
   );
 }
