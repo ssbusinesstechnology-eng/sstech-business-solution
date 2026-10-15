@@ -198,12 +198,12 @@ export const WHY_US = [
 ];
 
 export const DESIGN_PRICING = [
-  { item: "Church Poster", price: "KES 800 – 2,000" },
-  { item: "Event Poster", price: "KES 1,000 – 2,500" },
-  { item: "Club Poster", price: "KES 1,500 – 3,000" },
-  { item: "Business Promotion Poster", price: "KES 2,000 – 4,000" },
-  { item: "Product Advertisement Poster", price: "KES 2,500 – 5,000" },
-  { item: "Logo Design", price: "from KES 1,500" },
+  { item: "Church Poster", body: "Service, crusade, conference and fundraiser posters for print and WhatsApp." },
+  { item: "Event Poster", body: "Eye-catching posters for concerts, launches, parties and community events." },
+  { item: "Club Poster", body: "Bold nightlife and club promotion designs sized for social media." },
+  { item: "Business Promotion Poster", body: "Offers, openings and announcements that bring customers in." },
+  { item: "Product Advertisement Poster", body: "Clean product-focused adverts for online and in-store promotion." },
+  { item: "Logo Design", body: "A distinctive logo that gives your brand a professional identity." },
 ];
 
 export const PORTFOLIO_CATEGORIES = [

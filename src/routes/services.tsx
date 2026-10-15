@@ -1,6 +1,5 @@
 import { SERVICE_PAGES } from "@/lib/service-pages";
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { MessageCircle } from "lucide-react";
 
 import { PageHeader, Section } from "@/components/Section";
 import { Reveal } from "@/components/Reveal";
@@ -11,9 +10,8 @@ import { ProcessSection } from "@/components/sections/ProcessSection";
 import { ServicesSection } from "@/components/sections/ServicesSection";
 import { TechnologyGlobeSection } from "@/components/sections/TechnologyGlobeSection";
 import { Button } from "@/components/ui/button";
-import { DESIGN_PRICING } from "@/lib/content";
 import { breadcrumbJsonLd, seo } from "@/lib/site";
-import { designItemMessage, waLink } from "@/lib/whatsapp";
+import { DesignEnquiryCards } from "@/components/sections/DesignEnquiryCards";
 
 const PATH = "/services";
 const TITLE = "Services — Websites, Branding, Business Software | S&S Business Solutions";
@@ -82,32 +80,11 @@ function ServicesPage() {
 
       <Section
         id="design-pricing"
-        eyebrow="Design rates"
+        eyebrow="Graphic design"
         title="Poster, marketing and logo design"
-        description="Ranges depend on complexity, revisions and turnaround. Bulk and retainer rates available."
+        description="Tell us what you need and we'll share the available options and pricing."
       >
-        <Reveal>
-          <div className="mx-auto max-w-3xl overflow-hidden rounded-2xl border border-border bg-card">
-            {DESIGN_PRICING.map((row, i) => (
-              <div
-                key={row.item}
-                className={`flex flex-wrap items-center justify-between gap-3 px-6 py-4 ${
-                  i !== 0 ? "border-t border-border" : ""
-                }`}
-              >
-                <span className="text-sm font-medium">{row.item}</span>
-                <div className="flex items-center gap-4">
-                  <span className="text-sm font-semibold text-primary">{row.price}</span>
-                  <Button asChild size="sm" variant="outline" className="rounded-full">
-                    <a href={waLink(designItemMessage(row))} target="_blank" rel="noreferrer">
-                      <MessageCircle className="mr-2 h-3.5 w-3.5" /> Enquire
-                    </a>
-                  </Button>
-                </div>
-              </div>
-            ))}
-          </div>
-        </Reveal>
+        <DesignEnquiryCards />
         <Reveal>
           <p className="mx-auto mt-6 max-w-3xl text-center text-sm text-muted-foreground">
             Designing for a church?{" "}
