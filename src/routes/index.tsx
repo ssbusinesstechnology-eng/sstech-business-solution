@@ -6,7 +6,6 @@ import { Reveal } from "@/components/Reveal";
 import { Section } from "@/components/Section";
 import { SiteLayout } from "@/components/SiteLayout";
 import { AudiencesSection } from "@/components/sections/AudiencesSection";
-import { PortfolioSection } from "@/components/sections/PortfolioSection";
 import { PosSection } from "@/components/sections/PosSection";
 import { ProcessSection } from "@/components/sections/ProcessSection";
 import { ServicesSection } from "@/components/sections/ServicesSection";
