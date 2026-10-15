@@ -170,8 +170,6 @@ function Index() {
 
       <WhyUsSection />
 
-      <PortfolioSection limit={6} />
-
       <ProcessSection />
 
       {/* CTA */}

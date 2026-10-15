@@ -42,8 +42,6 @@ function PortfolioPage() {
           </Button>
         </div>
       </PageHeader>
-
-      <PortfolioSection />
     </SiteLayout>
   );
 }
