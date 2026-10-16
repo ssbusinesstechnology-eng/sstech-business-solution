@@ -6,6 +6,7 @@ import { Reveal } from "@/components/Reveal";
 import { Section } from "@/components/Section";
 import { SiteLayout } from "@/components/SiteLayout";
 import { AudiencesSection } from "@/components/sections/AudiencesSection";
+import { OffersCarousel } from "@/components/sections/OffersCarousel";
 import { PosSection } from "@/components/sections/PosSection";
 import { ProcessSection } from "@/components/sections/ProcessSection";
 import { ServicesSection } from "@/components/sections/ServicesSection";
@@ -95,6 +96,8 @@ function Index() {
           </div>
         </div>
       </section>
+
+      <OffersCarousel />
 
       {/* Introduction */}
       <Section
