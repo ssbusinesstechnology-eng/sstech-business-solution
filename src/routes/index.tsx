@@ -1,6 +1,7 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { ArrowRight, Check, Mail, MessageCircle, Server, ShieldCheck } from "lucide-react";
+import { ArrowRight, Check, FileDown, Mail, MessageCircle, Server, ShieldCheck } from "lucide-react";
 
+import brochure from "@/assets/brochure.pdf.asset.json";
 import { FacetedForm } from "@/components/FacetedForm";
 import { Reveal } from "@/components/Reveal";
 import { Section } from "@/components/Section";
@@ -194,6 +195,11 @@ function Index() {
               <Button asChild size="lg" variant="outline" className="rounded-none border-background/30 bg-transparent text-background hover:bg-background hover:text-foreground">
                 <a href={waLink(bookingMessage())} target="_blank" rel="noreferrer">
                   <MessageCircle className="mr-2 h-4 w-4" /> WhatsApp us
+                </a>
+              </Button>
+              <Button asChild size="lg" variant="outline" className="rounded-none border-background/30 bg-transparent text-background hover:bg-background hover:text-foreground">
+                <a href={brochure.url} download>
+                  <FileDown className="mr-2 h-4 w-4" /> Our brochure
                 </a>
               </Button>
             </div>

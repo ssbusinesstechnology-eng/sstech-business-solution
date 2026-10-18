@@ -1,9 +1,10 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useServerFn } from "@tanstack/react-start";
-import { Mail, MapPin, MessageCircle, Phone } from "lucide-react";
+import { FileDown, Mail, MapPin, MessageCircle, Phone } from "lucide-react";
 import { useState } from "react";
 import { toast } from "sonner";
 
+import brochure from "@/assets/brochure.pdf.asset.json";
 import { Reveal } from "@/components/Reveal";
 import { PageHeader, Section } from "@/components/Section";
 import { SiteLayout } from "@/components/SiteLayout";
@@ -193,7 +194,7 @@ function ContactPage() {
                       rel="noreferrer"
                       className="hover:text-primary"
                     >
-                      +254 713 268806
+                      +254 101 106 243
                     </a>
                   </li>
                   <li className="flex items-center gap-3">
@@ -229,6 +230,13 @@ function ContactPage() {
                     Book the call
                   </a>
                 </Button>
+                <a
+                  href={brochure.url}
+                  download
+                  className="mt-4 inline-flex w-full items-center justify-center gap-2 text-sm text-muted-foreground transition-colors hover:text-primary"
+                >
+                  <FileDown className="h-4 w-4" /> Download our brochure (PDF)
+                </a>
               </div>
             </div>
           </Reveal>
