@@ -1,7 +1,8 @@
 import { Link } from "@tanstack/react-router";
-import { ArrowRight, Mail, MessageCircle, Menu, Phone, X } from "lucide-react";
+import { ArrowRight, FileDown, Mail, MessageCircle, Menu, Phone, X } from "lucide-react";
 import { useState, type ReactNode } from "react";
 
+import brochure from "@/assets/brochure.pdf.asset.json";
 import { Logo } from "@/components/Logo";
 import { Button } from "@/components/ui/button";
 import { NAV } from "@/lib/content";
@@ -136,6 +137,13 @@ function SiteFooter() {
               <MessageCircle className="mr-2 h-4 w-4" /> WhatsApp us
             </a>
           </Button>
+          <a
+            href={brochure.url}
+            download
+            className="mt-3 inline-flex items-center gap-2 text-sm text-background/70 transition-colors hover:text-accent"
+          >
+            <FileDown className="h-4 w-4" /> Download our brochure (PDF)
+          </a>
         </div>
 
         <div>
