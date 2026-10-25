@@ -2,7 +2,6 @@ import { Link } from "@tanstack/react-router";
 import { ArrowRight, FileDown, Mail, MessageCircle, Menu, Phone, X } from "lucide-react";
 import { useState, type ReactNode } from "react";
 
-import brochure from "@/assets/brochure.pdf.asset.json";
 import { Logo } from "@/components/Logo";
 import { Button } from "@/components/ui/button";
 import { NAV } from "@/lib/content";
@@ -138,7 +137,7 @@ function SiteFooter() {
             </a>
           </Button>
           <a
-            href={brochure.url}
+            href={"/assets/ss-business-solutions-brochure.pdf"}
             download
             className="mt-3 inline-flex items-center gap-2 text-sm text-background/70 transition-colors hover:text-accent"
           >

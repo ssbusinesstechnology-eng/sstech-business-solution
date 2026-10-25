@@ -1,9 +1,5 @@
 import { queryOptions } from "@tanstack/react-query";
 
-import artExhibition from "@/assets/portfolio/art-exhibition-day.jpg.asset.json";
-import creativeVibes from "@/assets/portfolio/creative-vibes-event.jpg.asset.json";
-import pizzaTime from "@/assets/portfolio/pizza-time-poster.jpg.asset.json";
-import recruitmentCampaign from "@/assets/portfolio/recruitment-campaign.jpg.asset.json";
 import { supabase } from "@/integrations/supabase/client";
 import { getPublishedPortfolio } from "@/lib/portfolio.functions";
 
@@ -32,7 +28,7 @@ export const featuredPortfolioItems: PortfolioItem[] = [
     image_path: null,
     published: true,
     sort_order: -40,
-    imageUrl: creativeVibes.url,
+    imageUrl: "/assets/creative-vibes-event.jpg",
   },
   {
     id: "featured-art-exhibition",
@@ -43,7 +39,7 @@ export const featuredPortfolioItems: PortfolioItem[] = [
     image_path: null,
     published: true,
     sort_order: -30,
-    imageUrl: artExhibition.url,
+    imageUrl: "/assets/art-exhibition-day.jpg",
   },
   {
     id: "featured-pizza-time",
@@ -54,7 +50,7 @@ export const featuredPortfolioItems: PortfolioItem[] = [
     image_path: null,
     published: true,
     sort_order: -20,
-    imageUrl: pizzaTime.url,
+    imageUrl: "/assets/pizza-time-poster.jpg",
   },
   {
     id: "featured-recruitment",
@@ -65,7 +61,7 @@ export const featuredPortfolioItems: PortfolioItem[] = [
     image_path: null,
     published: true,
     sort_order: -10,
-    imageUrl: recruitmentCampaign.url,
+    imageUrl: "/assets/recruitment-campaign.jpg",
   },
 ];
 
