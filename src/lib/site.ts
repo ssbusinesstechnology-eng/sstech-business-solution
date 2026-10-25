@@ -1,4 +1,3 @@
-import ogCover from "@/assets/og-cover.jpg.asset.json";
 
 export const SITE_URL = "https://sstechsolutions.co.ke";
 export const SITE_NAME = "S&S Business Solutions";
@@ -9,7 +8,7 @@ export const WHATSAPP_PRIMARY = "254101106243";
 export const WHATSAPP_SECONDARY = "254115323604";
 
 /** Absolute URL used for Open Graph / Twitter previews. */
-export const OG_IMAGE = `${SITE_URL}${ogCover.url}`;
+export const OG_IMAGE = `${SITE_URL}/assets/og-cover.jpg`;
 
 export type SeoInput = {
   title: string;

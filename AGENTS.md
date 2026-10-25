@@ -10,9 +10,11 @@
 <!-- LOVABLE:END -->
 
 - Google Search Console data is refreshed only on an authenticated staff action and cached in Lovable Cloud; AI SEO analysis runs only on explicit admin request to minimize credit use.
-- Public portfolio combines admin-managed records with the four supplied design samples kept as managed project assets; matching titles are de-duplicated.
+- Public portfolio combines admin-managed records with the four supplied design samples kept as repository static files; matching titles are de-duplicated.
 - Public-facing pages use the Copper Glass system with Sora headings, Manrope body copy, faceted geometry and reduced-motion-safe CSS animation; admin workflows retain their functional structure.
 - Public AI recommendations are explicit one-click requests using the server-held AI Gateway key, low reasoning, bounded inputs and catalogue-only output; no background calls or automatic retries.
 - Recommendation PDFs are generated in the visitor's browser and optional follow-up details reuse the existing enquiry workflow, so neither action triggers another AI request.
 - Administrator roles are never self-assigned; portfolio storage is staff-only and public images are exposed solely through short-lived links for published records.
 - The Services technology globe is browser-only, pauses outside the viewport, caps pixel density, and becomes static for reduced motion to protect mobile performance.
+
+- Store new images and downloadable files directly in public/ or src/assets; use /assets/ paths for public assets and never asset-manager pointers or /__l5e/ URLs, so deployments remain portable to Vercel.

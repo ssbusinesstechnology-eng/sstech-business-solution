@@ -1,7 +1,6 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { ArrowRight, Check, FileDown, Mail, MessageCircle, Server, ShieldCheck } from "lucide-react";
 
-import brochure from "@/assets/brochure.pdf.asset.json";
 import { FacetedForm } from "@/components/FacetedForm";
 import { Reveal } from "@/components/Reveal";
 import { Section } from "@/components/Section";
@@ -198,7 +197,7 @@ function Index() {
                 </a>
               </Button>
               <Button asChild size="lg" variant="outline" className="rounded-none border-background/30 bg-transparent text-background hover:bg-background hover:text-foreground">
-                <a href={brochure.url} download>
+                <a href={"/assets/ss-business-solutions-brochure.pdf"} download>
                   <FileDown className="mr-2 h-4 w-4" /> Our brochure
                 </a>
               </Button>

@@ -4,7 +4,6 @@ import { FileDown, Mail, MapPin, MessageCircle, Phone } from "lucide-react";
 import { useState } from "react";
 import { toast } from "sonner";
 
-import brochure from "@/assets/brochure.pdf.asset.json";
 import { Reveal } from "@/components/Reveal";
 import { PageHeader, Section } from "@/components/Section";
 import { SiteLayout } from "@/components/SiteLayout";
@@ -235,7 +234,7 @@ function ContactPage() {
                   </a>
                 </Button>
                 <a
-                  href={brochure.url}
+                  href={"/assets/ss-business-solutions-brochure.pdf"}
                   download
                   className="mt-4 inline-flex w-full items-center justify-center gap-2 text-sm text-muted-foreground transition-colors hover:text-primary"
                 >

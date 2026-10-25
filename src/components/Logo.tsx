@@ -1,4 +1,3 @@
-import logo from "@/assets/ss-logo.jpg.asset.json";
 
 export function Logo({
   size = 40,
@@ -12,7 +11,7 @@ export function Logo({
   return (
     <span className="flex items-center gap-3">
       <img
-        src={logo.url}
+        src={"/assets/ss-logo.jpg"}
         alt="S&S Business Solutions logo"
         width={size}
         height={size}
