@@ -68,7 +68,7 @@ function ContactPage() {
       return;
     }
     setSending(true);
-    const wa = window.open("", "_blank", "noopener");
+    const wa = window.open("", "_blank");
     try {
       await saveLead({
         data: {
@@ -86,8 +86,12 @@ function ContactPage() {
     } finally {
       setSending(false);
       const url = waLink(enquiryMessage(form));
-      if (wa) wa.location.href = url;
-      else window.open(url, "_blank", "noopener");
+      if (wa) {
+        wa.opener = null;
+        wa.location.href = url;
+      } else {
+        window.open(url, "_blank");
+      }
     }
   }
 
